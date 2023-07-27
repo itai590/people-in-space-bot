@@ -1,9 +1,12 @@
 import os
+
 import telegram
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from src.logger import Logger
 from src.peopleinspace import scrape
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from user import User
+from utilities import Utilities as Util
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 USERS_FILENAME = "users.json"
@@ -15,13 +18,23 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def subscribe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    
-    
-    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
+    user = User(update.effective_user.first_name, update.effective_user.last_name, user['username'], user['id'])
+    Logger.log_user_call(user)
+    Logger.log_subscription_event(user)
+    Logger.log_subscription_event_to_file(user)
+    Util.add_user(user, USERS_FILENAME)
+    await update.message.reply_text(f'Thanks {update.effective_user.first_name + " " + update.effective_user.last_name}". Your subscription has been set"')
 
 
 async def unsubscribe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # UserJsonHelper.removeUserJSON(chatId);
+    # writeSubscribeLog("UN-SUBSCRIBE (fullName:"+ fullName + ", chatId:" + chatId + ")\n");
+    # message.setText(fullName + " ,You've been unsubscribed successfully");
     await update.message.reply_text(f'Hello {update.effective_user.first_name}')
+
+
+async def users(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    pass
 
 
 def bot():

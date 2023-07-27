@@ -1,7 +1,8 @@
+import json
+import time
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import time
-import json
 from selenium.webdriver.chrome.options import Options
 
 URL = "https://www.howmanypeopleareinspacerightnow.com/"
