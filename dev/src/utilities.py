@@ -14,14 +14,13 @@ class Utilities():
         with open(filename, 'w') as outfile:
             outfile.seek(0)
             json.dump(data, outfile)
-            
 
     def add_user(user, filename):
         dict = Utilities.read_json(filename)
         print("dict=", dict)
         if str(user.chat_id) not in dict:
-            print (user.chat_id, "not in dict")
-            print("user.__dict =" ,user.__dict__)
+            print(user.chat_id, "not in dict")
+            print("user.__dict =", user.__dict__)
             dict.update({user.chat_id: user.__dict__})
             Utilities.write_to_json(filename, dict)
 
@@ -34,14 +33,13 @@ class Utilities():
             Utilities.write_to_json(filename, dict)
         except KeyError:
             pass  # user not found
-        
 
     def _get_users(filename, json=False):
         ans = ""
         dict = Utilities.read_json(filename)
         if json:
-            return dict  
+            return dict
         for key in dict:
             u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"])
-            ans +=u.__str__() + "\n"
+            ans += u.__str__() + "\n"
         return ans
