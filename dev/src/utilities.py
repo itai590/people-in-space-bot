@@ -2,7 +2,6 @@ import json
 from src.user import User
 
 
-
 class Utilities():
 
     def read_json(filename):
@@ -35,10 +34,13 @@ class Utilities():
             Utilities.write_to_json(filename, dict)
         except KeyError:
             pass  # user not found
+        
 
-    def _get_users(filename):
+    def _get_users(filename, json=False):
         ans = ""
         dict = Utilities.read_json(filename)
+        if json:
+            return dict  
         for key in dict:
             u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"])
             ans +=u.__str__() + "\n"
