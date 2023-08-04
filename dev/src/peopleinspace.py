@@ -1,21 +1,14 @@
-import json
 import time
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from src.utilities import Utilities as util
 
 URL = "https://www.howmanypeopleareinspacerightnow.com/"
 
 WINDOW_SIZE = "1920,1080"
 FLAGS_FILE = "flags.json"
-
-
-def read_json(filename):
-    f = open(filename, 'r')
-    data = json.load(f)  # dictionary
-    f.close()
-    return data
 
 
 def search(dict, searchFor):
@@ -27,7 +20,7 @@ def search(dict, searchFor):
 
 
 def scrape(number_only=False):
-    flags = read_json(FLAGS_FILE)  # dictionary
+    flags = util.read_json(FLAGS_FILE)  # dictionary
 
     # Options
     chrome_options = Options()
@@ -76,7 +69,3 @@ def scrape(number_only=False):
     output = output.replace("Flight", "FLT")
 
     return output
-
-
-if __name__ == "__main__":
-    scrape()

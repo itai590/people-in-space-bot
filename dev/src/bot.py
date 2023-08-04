@@ -1,18 +1,18 @@
 import os
 
 import telegram
-from logger import Logger
-from peopleinspace import scrape
+from src.logger import Logger
+from src.peopleinspace import scrape
+from src.user import User
+from src.utilities import Utilities as Util
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
-from user import User
-from utilities import Utilities as Util
 
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 GET_USERS_TOKEN = os.environ['GET_USERS_TOKEN']
 
 USERS_FILENAME = "users.json"
-SUBSCRIPTION_LOG_FILENAME = "../logs/subscription_log.log"
+SUBSCRIPTION_LOG_FILENAME = "./logs/subscription_log.log"
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -57,6 +57,21 @@ async def users(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     Logger.log_user_call(user, "users")
     ans = Util._get_users(USERS_FILENAME)
     await update.message.reply_text(f"{ans}")
+    
+    
+async def howmany(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    user = update.message.from_user
+    user = User(update.effective_user.first_name, update.effective_user.last_name, user['username'], user['id'])
+    Logger.log_user_call(user, "howmany")
+    ans = scrape(True)
+    await update.message.reply_text(f"{ans}")
+    
+async def howmanydetailed(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    user = update.message.from_user
+    user = User(update.effective_user.first_name, update.effective_user.last_name, user['username'], user['id'])
+    Logger.log_user_call(user, "howmanydetailed")
+    ans = scrape()
+    await update.message.reply_text(f"{ans}")
 
 
 def bot():
@@ -69,8 +84,8 @@ def bot():
         app.add_handler(CommandHandler("start", start))
         app.add_handler(CommandHandler("subscribe", subscribe))
         app.add_handler(CommandHandler("unsubscribe", unsubscribe))
-        app.add_handler(CommandHandler("howmany", scrape(number_only=True)))
-        app.add_handler(CommandHandler("howmanydetailed", users))
+        app.add_handler(CommandHandler("howmany", howmany))
+        app.add_handler(CommandHandler("howmanydetailed", howmanydetailed))
         app.add_handler(CommandHandler(get_users_command, users))
 
         app.run_polling()

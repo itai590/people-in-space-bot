@@ -1,7 +1,6 @@
 import json
-from user import User
+from src.user import User
 
-DATE_FORMAT = '%d.%m.%Y'
 
 
 class Utilities():
@@ -14,20 +13,25 @@ class Utilities():
 
     def write_to_json(filename, data):
         with open(filename, 'w') as outfile:
+            outfile.seek(0)
             json.dump(data, outfile)
             
 
     def add_user(user, filename):
         dict = Utilities.read_json(filename)
         print("dict=", dict)
-        if user.chat_id() not in dict:
-            dict.update({user.chat_id(): user.__dict__})
+        if str(user.chat_id) not in dict:
+            print (user.chat_id, "not in dict")
+            print("user.__dict =" ,user.__dict__)
+            dict.update({user.chat_id: user.__dict__})
             Utilities.write_to_json(filename, dict)
 
     def remove_user(user, filename):
         try:
             dict = Utilities.read_json(filename)
-            dict.pop(user.chat_id())
+            print("dict=", dict)
+            dict.pop(str(user.chat_id))
+            print("dict after pop=", dict)
             Utilities.write_to_json(filename, dict)
         except KeyError:
             pass  # user not found
