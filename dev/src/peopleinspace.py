@@ -26,7 +26,7 @@ def search(dict, searchFor):
     return None
 
 
-def scrape():
+def scrape(number_only=False):
     flags = read_json(FLAGS_FILE)  # dictionary
 
     # Options
@@ -47,6 +47,9 @@ def scrape():
     # print(html.prettify())
 
     people_in_space = html.h1.get_text()  # html.find('a', id="container").h1.get_text()
+    if number_only:
+        return people_in_space
+    
     persons = html.find('div', id='listing')
 
     i = 1

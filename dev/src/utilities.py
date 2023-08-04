@@ -1,5 +1,5 @@
 import json
-
+from user import User
 
 DATE_FORMAT = '%d.%m.%Y'
 
@@ -19,8 +19,10 @@ class Utilities():
 
     def add_user(user, filename):
         dict = Utilities.read_json(filename)
-        dict.update({user.chat_id(): user.__dict__})
-        Utilities.write_to_json(filename, dict)
+        print("dict=", dict)
+        if user.chat_id() not in dict:
+            dict.update({user.chat_id(): user.__dict__})
+            Utilities.write_to_json(filename, dict)
 
     def remove_user(user, filename):
         try:
@@ -31,5 +33,9 @@ class Utilities():
             pass  # user not found
 
     def _get_users(filename):
+        ans = ""
         dict = Utilities.read_json(filename)
-        return dict.values()
+        for key in dict:
+            u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"])
+            ans +=u.__str__() + "\n"
+        return ans
