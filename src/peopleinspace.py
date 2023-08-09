@@ -3,7 +3,7 @@ import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from src.utilities import Utilities as util
+from utilities import Utilities as util
 
 URL = "https://www.howmanypeopleareinspacerightnow.com/"
 

@@ -1,5 +1,5 @@
 import json
-from src.user import User
+from user import User
 
 
 class Utilities():

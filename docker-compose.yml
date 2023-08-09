@@ -1,0 +1,33 @@
+services:
+  subscription_handler:
+    build: .
+    container_name: subscription_handler
+    image: peopleinespace/subscription_handler:latest
+    environment:
+      - TZ=Asia/Jerusalem
+    # command:
+    #   - /bin/sh
+    #   - -c
+    #   - |
+    #     pwd
+    #     ls
+    #     cd src
+    #     ls
+      
+#    volumes:
+#      - ~/peopleinspace-bot:/app
+    restart: always
+
+  send_update:
+    build: .
+    container_name: send_update
+    image: peopleinespace/send_update:latest
+
+    command:
+      - python -m ./src.main
+    #python3 src/send_update.py
+    environment:
+      - TZ=Asia/Jerusalem
+#    volumes:
+#      - ~/peopleinspace-bot:/app
+    restart: always

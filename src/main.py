@@ -1,10 +1,10 @@
 import os
 
 import telegram
-from src.logger import Logger
-from src.peopleinspace import scrape
-from src.user import User
-from src.utilities import Utilities as Util
+from logger import Logger
+from peopleinspace import scrape
+from user import User
+from utilities import Utilities as Util
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
@@ -94,6 +94,5 @@ class SubscriptionHandlerBot():
 
 
 if __name__ == "__main__":
-    # python3 -m src.subscription_handler
     # TODO Bot Father Add test Bot
     SubscriptionHandlerBot.main()

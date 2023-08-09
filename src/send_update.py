@@ -1,8 +1,8 @@
 import requests
-from src.logger import Logger
-from src.peopleinspace import scrape
-from src.utilities import Utilities as Util
-from src.subscription_handler import BotDefinitions
+from logger import Logger
+from peopleinspace import scrape
+from utilities import Utilities as Util
+from __main__ import BotDefinitions
 
 
 class SendUpdatesBot():
