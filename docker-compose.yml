@@ -5,17 +5,8 @@ services:
     image: peopleinespace/subscription_handler:latest
     environment:
       - TZ=Asia/Jerusalem
-    # command:
-    #   - /bin/sh
-    #   - -c
-    #   - |
-    #     pwd
-    #     ls
-    #     cd src
-    #     ls
-      
-#    volumes:
-#      - ~/peopleinspace-bot:/app
+    #    volumes:
+    #      - ~/peopleinspace-bot:/app
     restart: always
 
   send_update:
@@ -24,10 +15,9 @@ services:
     image: peopleinespace/send_update:latest
 
     command:
-      - python -m ./src.main
-    #python3 src/send_update.py
+      - python src/send_update.py
     environment:
       - TZ=Asia/Jerusalem
-#    volumes:
-#      - ~/peopleinspace-bot:/app
+    #    volumes:
+    #      - ~/peopleinspace-bot:/app
     restart: always
