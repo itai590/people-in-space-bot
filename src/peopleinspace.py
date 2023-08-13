@@ -8,7 +8,7 @@ from utilities import Utilities as util
 URL = "https://www.howmanypeopleareinspacerightnow.com/"
 
 WINDOW_SIZE = "1920,1080"
-FLAGS_FILE = "flags.json"
+FLAGS_FILE = "./src/flags.json"
 
 
 def search(dict, searchFor):

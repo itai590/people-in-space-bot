@@ -13,7 +13,7 @@ class BotDefinitions:
     BOT_TOKEN = os.environ["BOT_TOKEN"]
     GET_USERS_TOKEN = os.environ['GET_USERS_TOKEN']
 
-    USERS_FILENAME = "users.json"
+    USERS_FILENAME = "./app/users.json"
     SUBSCRIPTION_LOG_FILENAME = "./logs/subscription_log.log"
 
 

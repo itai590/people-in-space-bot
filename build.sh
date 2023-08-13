@@ -16,6 +16,9 @@ sudo docker build -t peopleinespace/subscription_handler:latest .
 sudo docker-compose up -d subscription_handler
 docker logs subscription_handler
 
-sudo docker build -t peopleinespace/send_update:latest .
+
+
+sudo docker build -t peopleinespace:latest .
+sudo docker-compose up --build -d  send_update
 sudo docker-compose up -d send_update
 docker logs send_update

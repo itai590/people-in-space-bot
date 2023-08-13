@@ -1,26 +1,22 @@
 services:
   subscription_handler:
     build: .
-    container_name: subscription_handler
-    image: peopleinespace/subscription_handler:latest
-    environment:
-      - TZ=Asia/Jerusalem
+    container_name: peopleinespace_subscription_handler
+    image: peopleinespace:latest
+    env_file:
+      - .env
     volumes:
-    - ~/peopleinspace-bot/app/logs:/app/logs
-    - ~/peopleinspace-bot/app/users.json:/app/users.json
+      - ~/peopleinspace-bot/app/logs:/app/logs
+      - ~/peopleinspace-bot/app/users.json:/app/users.json
     restart: always
 
   send_update:
     build: .
-    container_name: send_update
-    image: peopleinespace/send_update:latest
-
+    container_name: peopleinespace_send_update
+    image: peopleinespace:latest
     command: python src/send_update.py
-    environment:
-      - TZ=Asia/Jerusalem
-    #    volumes:
-    #      - ~/peopleinspace-bot:/app
-    restart: always
-
-
-# docker run --rm -d -e TZ=Asia/Jerusalem -v /home/pi/shifts-scripts/conf:/conf shifts-mailer-image:latest --abort_on_mor_none_holiday=$abort_on_mor_none --abort_on_eve_none=$abort_on_eve_none
+    env_file:
+      - .env
+    volumes:
+      - ~/peopleinspace-bot/app/logs:/app/logs
+      - ~/peopleinspace-bot/app/users.json:/app/users.json
