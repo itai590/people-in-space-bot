@@ -5,8 +5,9 @@ services:
     image: peopleinespace/subscription_handler:latest
     environment:
       - TZ=Asia/Jerusalem
-    #    volumes:
-    #      - ~/peopleinspace-bot:/app
+    volumes:
+    - ~/peopleinspace-bot/app/logs:/app/logs
+    - ~/peopleinspace-bot/app/users.json:/app/users.json
     restart: always
 
   send_update:
@@ -14,10 +15,12 @@ services:
     container_name: send_update
     image: peopleinespace/send_update:latest
 
-    command:
-      - python src/send_update.py
+    command: python src/send_update.py
     environment:
       - TZ=Asia/Jerusalem
     #    volumes:
     #      - ~/peopleinspace-bot:/app
     restart: always
+
+
+# docker run --rm -d -e TZ=Asia/Jerusalem -v /home/pi/shifts-scripts/conf:/conf shifts-mailer-image:latest --abort_on_mor_none_holiday=$abort_on_mor_none --abort_on_eve_none=$abort_on_eve_none

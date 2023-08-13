@@ -2,7 +2,7 @@ import requests
 from logger import Logger
 from peopleinspace import scrape
 from utilities import Utilities as Util
-from __main__ import BotDefinitions
+from    main import BotDefinitions
 
 
 class SendUpdatesBot():
