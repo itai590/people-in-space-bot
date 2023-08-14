@@ -1,8 +1,9 @@
 import requests
+
+import peopleinspace
 from logger import Logger
-from peopleinspace import scrape
-from utilities import Utilities as Util
 from main import BotDefinitions
+from utilities import Utilities as Util
 
 
 class SendUpdatesBot():
@@ -25,6 +26,6 @@ class SendUpdatesBot():
 if __name__ == "__main__":
     Logger.set_logger()
     Logger.log_info("send_update started")
-    SendUpdatesBot.send_updates(BotDefinitions.BOT_TOKEN, BotDefinitions.USERS_FILENAME, scrape())
+    peopleinspace_update = peopleinspace.scrape()
+    SendUpdatesBot.send_updates(BotDefinitions.BOT_TOKEN, BotDefinitions.USERS_FILENAME, peopleinspace_update)
     Logger.log_info("send_update finished")
-    

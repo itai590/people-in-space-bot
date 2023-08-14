@@ -1,24 +1,14 @@
 #!/bin/bash
-# CI/CD build script
+
+REPOSITORY=peopleinespace
+TIMESTAMP=$(date +%s)
+ENV=dev
+IMAGE_TAG=$TIMESTAMP-$ENV
+
 echo Build started
 echo Building the Docker image...
-docker build -t $REPOSITORY_URI:serialn_num,latest,prod .
-docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+sudo docker build -t $REPOSITORY:latest .
+docker tag $REPOSITORY:latest $REPOSITORY:"$IMAGE_TAG"
+docker tag $REPOSITORY:latest $REPOSITORY:$ENV
+docker tag $REPOSITORY:latest $REPOSITORY:"$TIMESTAMP"
 echo Build completed
-
-BUILD_NUMBER=1
-IMAGE_TAG=dev
-REPOSITORY_URI=subscription_handler
-sudo docker build -t "$REPOSITORY_URI":"$IMAGE_TAG" .
-
-# Local Deploy and test #
-sudo docker build -t peopleinespace/subscription_handler:latest .
-sudo docker-compose up -d subscription_handler
-docker logs subscription_handler
-
-
-
-sudo docker build -t peopleinespace:latest .
-sudo docker-compose up --build -d  send_update
-sudo docker-compose up -d send_update
-docker logs send_update

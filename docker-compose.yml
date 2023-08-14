@@ -11,9 +11,10 @@ services:
     restart: always
 
   send_update:
-    build: .
+
     container_name: peopleinespace_send_update
     image: peopleinespace:latest
+    build: .
     command: python src/send_update.py
     env_file:
       - .env

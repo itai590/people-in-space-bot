@@ -1,3 +1,4 @@
+import datetime
 import logging
 import sys
 
@@ -33,7 +34,8 @@ class Logger():
         action_txt = "SUBSCRIBE" if subscribe else "UN-SUBSCRIBE"
         log_txt = f"{action_txt} {user.full_name()} ({user.username}) <{user.chat_id}>"
         Logger.log_info(log_txt)
+        dateandtime = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         f = open(logfile, "a")
-        f.write(log_txt)
+        f.write(dateandtime + log_txt)
         f.write("\n")
         f.close()
