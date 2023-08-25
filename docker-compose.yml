@@ -4,7 +4,7 @@ services:
     container_name: peopleinespace_subscription_handler
     image: peopleinespace:latest
     env_file:
-      - .env
+      - /app/.env
     volumes:
       - ~/peopleinspace-bot/app/logs:/app/logs
       - ~/peopleinspace-bot/app/users.json:/app/users.json
@@ -17,7 +17,7 @@ services:
     build: .
     command: python src/send_update.py
     env_file:
-      - .env
+      - /app/.env
     volumes:
       - ~/peopleinspace-bot/app/logs:/app/logs
       - ~/peopleinspace-bot/app/users.json:/app/users.json
