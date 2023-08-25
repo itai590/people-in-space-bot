@@ -6,21 +6,25 @@ pipeline {
     stages {
         stage('Pre Build') {
             steps {
-                echo 'Pre Build started'
+                echo "Pre Build started"
                 // TODO:
                 // Add stop + rm to relevant containers
                 // Add rmi to relevant images
-                println('Pre Build completed')
+                echo "Pre Build completed"
             }
         }
         stage('Build') {
             steps {
                 script {
+                    echo "1"
                     def now = new Date()
-                    println now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
-                    
+                    echo "2"
+                    echo now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
+                    echo "3"
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
+                    echo "4"
                     IMAGE_TAG = sdf.format(now) + '-' + ENV
+                    echo "5"
                     println('Build started')
                     println('Building the Docker image...')
                     sh "docker build -t $REPOSITORY:latest ."
