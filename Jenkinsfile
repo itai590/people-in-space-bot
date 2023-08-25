@@ -21,6 +21,7 @@ pipeline {
                     sh('echo $ENV_FILE > .env')
                 }
                 script {
+                    sh('pwd')
                     sh('ls -a')
                     def now = new Date()
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
