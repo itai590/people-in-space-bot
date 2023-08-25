@@ -21,8 +21,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV_FILE')]) {
                     // sh 'echo $ENV > .env'
-                    sh 'touch .env'
-                    sh 'cat $ENV_FILE > .env'
+                    echo $ENV_FILE > .env
                 }
                 script {
                     def now = new Date()
