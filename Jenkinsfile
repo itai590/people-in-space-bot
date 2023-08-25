@@ -1,4 +1,6 @@
 import java.text.SimpleDateFormat
+REPOSITORY= 'peopleinespace'
+ENV = 'dev'
 pipeline {
     agent {
         label 'raspi-slave1-agent'
@@ -16,16 +18,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    echo "1"
                     def now = new Date()
-                    echo "2"
-                    echo now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
-                    echo "3"
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
-                    echo sdf.format(now)
-                    echo "4"
-                    //IMAGE_TAG = sdf.format(now) + '-' + ENV
-                    echo "5"
+                    timestamp = sdf.format(now)
+                    IMAGE_TAG = timestamp + "-" + ENV
                     println('Build started')
                     println('Building the Docker image...')
                     sh "docker build -t $REPOSITORY:latest ."
