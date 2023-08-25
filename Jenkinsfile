@@ -19,9 +19,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV')]) {
+                withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV_FILE')]) {
                     // sh 'echo $ENV > .env'
-                    sh "cat $ENV > .env"
+                    sh "cat $ENV_FILE > .env"
                 }
                 script {
                     def now = new Date()
