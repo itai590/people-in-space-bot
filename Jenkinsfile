@@ -16,7 +16,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'git https://github.com/itai590/people-in-space-bot.git'
                     def now = new Date()
                     println now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
                     
