@@ -19,33 +19,34 @@ pipeline {
         }
         stage('Build') {
             steps {
-                script {
-                    withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV')]) {
-                        sh 'echo $ENV > .env'
-                        def now = new Date()
-                        sdf = new SimpleDateFormat('MMddyyHHmmss')
-                        timestamp = sdf.format(now)
-                        IMAGE_TAG = timestamp + '-' + ENV
-                        echo 'Build started'
-                        echo 'Building the Docker image...'
-                        sh "docker build -t $REPOSITORY:latest ."
-                        sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
-                        sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
-                        sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
-                        echo 'Build completed'
-                    }
+                withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV')]) {
+                    // sh 'echo $ENV > .env'
+                    sh "cat $ENV > .env"
                 }
-                post {
-                    success {
-                        echo 'Build success'
-                    }
+                script {
+                    def now = new Date()
+                    sdf = new SimpleDateFormat('MMddyyHHmmss')
+                    timestamp = sdf.format(now)
+                    IMAGE_TAG = timestamp + '-' + ENV
+                    echo 'Build started'
+                    echo 'Building the Docker image...'
+                    sh "docker build -t $REPOSITORY:latest ."
+                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
+                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
+                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
+                    echo 'Build completed'
+                }
+            }
+            post {
+                success {
+                    echo 'Build success'
                 }
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploy started'
-                echo Deploying 'the Docker image..'
+                echo "Deploying the Docker image.."
                 // # subscription_handler #
                 sh 'docker-compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
