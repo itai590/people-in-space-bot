@@ -2,7 +2,6 @@ pipeline {
     agent {
         label 'raspi-slave1-agent'
         }
-    }
     stages {
         stage('Pre Build') {
             steps {
