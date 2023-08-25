@@ -21,7 +21,7 @@ pipeline {
                     sh('echo $ENV_FILE > .env')
                 }
                 script {
-                    sh('ls')
+                    sh('ls -a')
                     def now = new Date()
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
                     timestamp = sdf.format(now)
