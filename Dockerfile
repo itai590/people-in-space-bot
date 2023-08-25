@@ -1,4 +1,5 @@
-FROM python:3.10.10-alpine
+FROM python:3.10.10
+#FROM python:3.10.10-alpine
 WORKDIR /app
 ADD src ./src
 COPY requirements.txt .
@@ -6,7 +7,7 @@ COPY requirements.txt .
 # RUN apk --update add --no-cache chromium chromium-chromedriver
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-RUN apk update
+RUN 
 RUN apk add chromium
 RUN apk add chromium-chromedriver
 RUN --mount=type=cache,target=/root/.cache \
