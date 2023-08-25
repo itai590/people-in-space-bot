@@ -45,7 +45,7 @@ pipeline {
                 echo 'Deploy started'
                 echo 'Deploying the Docker image..'
                 // # subscription_handler #
-                sh 'docker-compose up -d subscription_handler'
+                sh 'docker compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
                 // # send_update #
                 // docker-compose up -d send_update
