@@ -22,8 +22,9 @@ pipeline {
                     echo now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
                     echo "3"
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
+                    echo now.format(sdf)
                     echo "4"
-                    IMAGE_TAG = sdf.format(now) + '-' + ENV
+                    //IMAGE_TAG = sdf.format(now) + '-' + ENV
                     echo "5"
                     println('Build started')
                     println('Building the Docker image...')
