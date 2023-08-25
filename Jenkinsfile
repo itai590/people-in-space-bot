@@ -22,7 +22,7 @@ pipeline {
                     echo now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
                     echo "3"
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
-                    echo now.format(sdf)
+                    echo sdf.format(now)
                     echo "4"
                     //IMAGE_TAG = sdf.format(now) + '-' + ENV
                     echo "5"
