@@ -27,7 +27,7 @@ pipeline {
                     sh "docker build -t $REPOSITORY:latest ."
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$TIMESTAMP"
+                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
                     println('Build completed')
                 }
             }
