@@ -7,7 +7,7 @@ COPY requirements.txt .
 # RUN apk --update add --no-cache chromium chromium-chromedriver
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-RUN 
+RUN apk update
 RUN apk add chromium
 RUN apk add chromium-chromedriver
 RUN --mount=type=cache,target=/root/.cache \
