@@ -1,11 +1,12 @@
-FROM alpine:latest
+#FROM alpine:latest
 # FROM python:3.10.10
-# FROM python:3.10.10-alpine
+FROM python:3.10.10-alpine
+
 # Install python/pip
-ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+#ENV PYTHONUNBUFFERED=1
+#RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+#RUN python3 -m ensurepip
+#RUN pip3 install --no-cache --upgrade pip setuptools
 
 
 # Works locally on mac but not on jenkins
@@ -21,5 +22,5 @@ COPY requirements.txt .
 
 RUN --mount=type=cache,target=/root/.cache \
     pip install -r requirements.txt
-    
+
 CMD ["python" , "src/main.py"]
