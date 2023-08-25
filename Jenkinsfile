@@ -20,7 +20,6 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV_FILE')]) {
-                    // sh 'echo $ENV > .env'
                     sh('echo $ENV_FILE > .env')
                 }
                 script {
@@ -30,10 +29,10 @@ pipeline {
                     IMAGE_TAG = timestamp + '-' + ENV
                     echo 'Build started'
                     echo 'Building the Docker image...'
-                    sh "docker build -t $REPOSITORY:latest ."
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
+                    sh 'docker build -t $REPOSITORY:latest .'
+                    sh 'docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG'
+                    sh 'docker tag $REPOSITORY:latest $REPOSITORY:$ENV'
+                    sh 'docker tag $REPOSITORY:latest $REPOSITORY:$timestamp'
                     echo 'Build completed'
                 }
             }
@@ -46,7 +45,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy started'
-                echo "Deploying the Docker image.."
+                echo 'Deploying the Docker image..'
                 // # subscription_handler #
                 sh 'docker-compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
