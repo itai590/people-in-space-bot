@@ -2,4 +2,6 @@ python-telegram-bot
 bs4
 requests
 selenium
+libxml2
+libxslt
 lxml
