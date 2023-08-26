@@ -8,12 +8,8 @@
 #FROM python:3-alpine3.12
 FROM alpine
 
-#RUN ping -c 1 8.8.8.8
-
+RUN ping -c 1 8.8.8.8
 # RUN apk update
-
-
-RUN echo hello
 RUN uname -a
 
 
@@ -47,7 +43,7 @@ RUN uname -a
 #     zlib-dev
 
 #RUN apk add --no-cache  chromium  
-RUN apk add --no-cache  python3 pip
+RUN apk add --no-cache  python3
 RUN apk add chromium chromium-chromedriver
 
 # RUN apt-get install chromium chromium-chromedriver
