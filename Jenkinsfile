@@ -29,7 +29,7 @@ pipeline {
                     IMAGE_TAG = timestamp + '-' + ENV
                     echo 'Build started'
                     echo 'Building the Docker image...'
-                    sh "docker build -t $REPOSITORY:latest ."
+                    sh "docker build --network host -t $REPOSITORY:latest ."
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
