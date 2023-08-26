@@ -5,8 +5,8 @@
 # alpinelinux/docker-alpine#135
 # FROM markadams/chromium-xvfb:latest
 # FROM alpine:3.10.7
-#FROM python:3-alpine3.12
-FROM alpine:3.12
+FROM python:3-alpine3.12
+
 
 RUN ping -c 1 8.8.8.8
 # RUN apk update
@@ -42,9 +42,7 @@ RUN uname -a
 #     xvfb \
 #     zlib-dev
 
-#RUN apk add --no-cache  chromium  
-RUN apk add --no-cache  python3
-RUN apk add chromium chromium-chromedriver
+# RUN apk add chromium chromium-chromedriver
 
 # RUN apt-get install chromium chromium-chromedriver
 # RUN apt-get install python3 python3-pip
