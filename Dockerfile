@@ -6,8 +6,8 @@ FROM python:3.10.10-alpine
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 
-    
-RUN apk update && apk add --no-cache bash \
+
+RUN apk update && apk add --update --no-cache bash \
     alsa-lib \
     at-spi2-atk \
     atk \
