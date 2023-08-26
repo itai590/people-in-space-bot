@@ -8,7 +8,7 @@ FROM alpine:3.10.7
 
 RUN ping -c 1 8.8.8.8
 
-# RUN apk update
+RUN apk update
 # RUN apk add --no-cache bash \
 #     alsa-lib \
 #     at-spi2-atk \
