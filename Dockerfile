@@ -5,7 +5,8 @@
 # alpinelinux/docker-alpine#135
 FROM python:3-alpine3.12
 
-RUN apk update && apk add --no-cache bash \
+RUN apk update
+RUN apk add --no-cache bash \
     alsa-lib \
     at-spi2-atk \
     atk \
