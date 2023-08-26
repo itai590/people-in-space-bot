@@ -28,8 +28,8 @@ pipeline {
                     sh('pwd')
                     sh('ls -a')
 
-                    sh "cp -R ./src $project_path/src"
-                    sh "cp $project_path/requirements.txt"
+                    sh "cp -R ./src $PROJECT_PATH/src"
+                    sh "cp $PROJECT_PATH/requirements.txt"
                     sh "pip install -r requirements.txt"
                     echo "Build completed"
                 }
