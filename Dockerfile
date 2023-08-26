@@ -11,7 +11,14 @@ FROM ubuntu
 #RUN ping -c 1 8.8.8.8
 
 # RUN apk update
-RUN uname -a
+
+
+
+# RUN uname -a
+
+
+
+
 # RUN apk add --no-cache bash \
 #     alsa-lib \
 #     at-spi2-atk \
