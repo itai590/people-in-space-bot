@@ -6,7 +6,7 @@
 # FROM markadams/chromium-xvfb:latest
 # FROM alpine:3.10.7
 #FROM python:3-alpine3.12
-FROM ubuntu
+FROM alpine
 
 #RUN ping -c 1 8.8.8.8
 
@@ -14,7 +14,7 @@ FROM ubuntu
 
 
 RUN echo hello
-# RUN uname -a
+RUN uname -a
 
 
 
@@ -47,11 +47,11 @@ RUN echo hello
 #     zlib-dev
 
 #RUN apk add --no-cache  chromium  
-# RUN apk add --no-cache  python3 pip
-# RUN apk add chromium chromium-chromedriver
+RUN apk add --no-cache  python3 pip
+RUN apk add chromium chromium-chromedriver
 
-RUN apt-get install chromium chromium-chromedriver
-RUN apt-get install python3 python3-pip
+# RUN apt-get install chromium chromium-chromedriver
+# RUN apt-get install python3 python3-pip
 WORKDIR /app
 ADD src ./src
 COPY requirements.txt .
