@@ -3,9 +3,6 @@ FROM python:3-alpine3.12
 
 
 #raspi-slave-1
-
-
-
 # RUN apk update && apk add --update --no-cache bash \
 #     alsa-lib \
 #     at-spi2-atk \
