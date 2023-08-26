@@ -29,26 +29,26 @@ pipeline {
                     sh('ls -a')
 
 
-                    def now = new Date()
-                    sdf = new SimpleDateFormat('MMddyyHHmmss')
-                    timestamp = sdf.format(now)
-                    IMAGE_TAG = timestamp + '-' + ENV
-                    echo 'Build started'
-                    echo 'Building the Docker image...'
-                    sh "docker build --network host -t $REPOSITORY:latest ."
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
+                    // def now = new Date()
+                    // sdf = new SimpleDateFormat('MMddyyHHmmss')
+                    // timestamp = sdf.format(now)
+                    // IMAGE_TAG = timestamp + '-' + ENV
+                    // echo 'Build started'
+                    // echo 'Building the Docker image...'
+                    // sh "docker build --network host -t $REPOSITORY:latest ."
+                    // sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
+                    // sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
+                    // sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
 
 
 
 
 
 
-                    // sh 'docker built -t peopleinespace_subscription_handler ./subscription_handler'
-                    // sh "cp -R ./src $PROJECT_PATH/src"
-                    // sh "cp requirements.txt $PROJECT_PATH/requirements.txt"
-                    // sh "pip install -r requirements.txt"
+                  
+                    sh "cp -R ./src $PROJECT_PATH/src"
+                    sh "cp requirements.txt $PROJECT_PATH/requirements.txt"
+                    sh "pip install -r requirements.txt"
 
 
 
