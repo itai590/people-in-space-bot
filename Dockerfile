@@ -1,4 +1,4 @@
-FROM python:3.10.10-alpine
+FROM python:3.10.10-alpine3.12
 
 
 #raspi-slave-1
