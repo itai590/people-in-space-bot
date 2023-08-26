@@ -2,7 +2,7 @@
 import java.text.SimpleDateFormat
 
 REPOSITORY = "peopleinespace"
-PROJECT_PATH = "~/$REPOSITORY"
+PROJECT_PATH = "/home/jenkins/$REPOSITORY"
 ENV = 'dev'
 
 pipeline {
