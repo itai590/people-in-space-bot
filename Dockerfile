@@ -6,7 +6,7 @@
 # FROM markadams/chromium-xvfb:latest
 # FROM alpine:3.10.7
 #FROM python:3-alpine3.12
-FROM alpine
+FROM alpine3.12
 
 RUN ping -c 1 8.8.8.8
 # RUN apk update
