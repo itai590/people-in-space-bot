@@ -4,8 +4,6 @@ FROM python:3-alpine3.12
 
 #raspi-slave-1
 
-# RUN rm -rf /var/cache/apk/* && \
-#     rm -rf /tmp/*
 
 
 # RUN apk update && apk add --update --no-cache bash \
@@ -38,8 +36,7 @@ FROM python:3-alpine3.12
 #     chromium-chromedriver
 
 
-#RUN apk add chromium chromium-chromedriver
-RUN ping 8.8.8.8
+RUN apk add chromium chromium-chromedriver
 WORKDIR /app
 ADD src ./src
 COPY requirements.txt .
