@@ -25,16 +25,12 @@ pipeline {
                     sh("lsb_release -a")
                     sh('pwd')
                     sh('ls -a')
-                    def now = new Date()
-                    sdf = new SimpleDateFormat('MMddyyHHmmss')
-                    timestamp = sdf.format(now)
-                    IMAGE_TAG = timestamp + '-' + ENV
-                    echo 'Build started'
-                    echo 'Building the Docker image...'
-                    sh "docker build --network host -t $REPOSITORY:latest ."
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
-                    sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
+
+
+                    project_path="~/home/peopleinspace/"
+                    sh 'cp -R ./src $project_path/src'
+                    sh 'cp $project_path/requirements.txt'
+                    sh 'pip install -r requirements.txt'
                     echo 'Build completed'
                 }
             }
@@ -47,10 +43,17 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy started'
-                echo 'Deploying the Docker image..'
+
+                sh 'reboot'
+
+
+
+
                 // # subscription_handler #
                 sh 'docker compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
+
+
                 // # send_update #
                 // docker-compose up -d send_update
                 // docker logs peopleinespace_send_update
