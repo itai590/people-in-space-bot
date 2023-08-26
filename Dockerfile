@@ -35,8 +35,8 @@ RUN apk add --no-cache bash \
     xvfb \
     zlib-dev
 
-RUN apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.16/main
-RUN apk add --no-cache  chromium-chromedriver --repository=http://dl-cdn.alpinelinux.org/alpine/v3.16/main
+RUN apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.17/main -u alpine-keys
+RUN apk add --no-cache  chromium-chromedriver --repository=http://dl-cdn.alpinelinux.org/alpine/v3.17/main -u alpine-keys
 
 
 # RUN apk add chromium chromium-chromedriver
