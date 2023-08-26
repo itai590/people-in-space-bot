@@ -37,7 +37,7 @@ RUN ping -c 1 8.8.8.8
 #     zlib-dev
 
 #RUN apk add --no-cache  chromium  chromium-chromedriver
-RUN apk add --no-cache  python3  
+RUN apk add --no-cache  python3 pip3
 # RUN apk add chromium chromium-chromedriver
 
 WORKDIR /app
