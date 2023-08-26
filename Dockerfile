@@ -5,6 +5,7 @@
 # alpinelinux/docker-alpine#135
 FROM python:3-alpine3.12
 RUN apk add chromium chromium-chromedriver
+
 WORKDIR /app
 ADD src ./src
 COPY requirements.txt .
