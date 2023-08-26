@@ -2,6 +2,11 @@ FROM python:3.10.10-alpine
 
 
 #raspi-slave-1
+
+RUN rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
+
+    
 RUN apk update && apk add --no-cache bash \
     alsa-lib \
     at-spi2-atk \
