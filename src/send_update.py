@@ -25,7 +25,7 @@ class SendUpdatesBot():
 
 if __name__ == "__main__":
     #TODO:
-    # Add SDTIN as message for send_custom_message
+    # Add SDTIN as message for send_release_notes
     Logger.set_logger()
     Logger.log_info("send_update started")
     peopleinspace_update = peopleinspace.scrape()
