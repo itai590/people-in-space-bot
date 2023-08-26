@@ -6,7 +6,6 @@
 FROM python:3-alpine3.12
 
 RUN apk update
-RUN apk upgrade
 RUN apk add --no-cache bash \
     alsa-lib \
     at-spi2-atk \
@@ -32,9 +31,10 @@ RUN apk add --no-cache bash \
     libexif \
     udev \
     xvfb \
-    zlib-dev \
-    chromium \
-    chromium-chromedriver
+    zlib-dev
+
+RUN apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main
+RUN apk add --no-cache  chromium-chromedriver --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main
 
 
 # RUN apk add chromium chromium-chromedriver
