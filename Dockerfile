@@ -13,7 +13,7 @@ FROM ubuntu
 # RUN apk update
 
 
-
+RUN echo hello
 # RUN uname -a
 
 
