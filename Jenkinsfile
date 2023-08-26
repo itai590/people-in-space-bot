@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 REPOSITORY = 'peopleinespace'
 ENV = 'dev'
 pipeline {
-    agent any //{label 'raspi-slave1-agent'}
+    agent {label 'raspi-slave1-agent'}
     stages {
         stage('Pre Build') {
             steps {
@@ -29,7 +29,7 @@ pipeline {
                     IMAGE_TAG = timestamp + '-' + ENV
                     echo 'Build started'
                     echo 'Building the Docker image...'
-                    sh "docker build --network host -t $REPOSITORY:latest ."
+                    sh "docker build -t $REPOSITORY:latest ."
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
                     sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
