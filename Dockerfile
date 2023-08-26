@@ -1,7 +1,7 @@
 # ERROR installing apk add chromium chromium-chromedriver
 # FROM python:3.10.10-alpine
 # Due to
-# alpine 3.13, armv7 network-access seems to be broken alpinelinux/docker-alpine#135
+# alpine 3.13, 3.17 armv7 network-access seems to be broken alpinelinux/docker-alpine#135
 FROM python:3-alpine3.15
 
 
@@ -35,8 +35,8 @@ FROM python:3-alpine3.15
 #     chromium \
 #     chromium-chromedriver
 
-RUN ping -c 1 8.8.8.8
-# RUN apk add chromium chromium-chromedriver
+# RUN ping -c 1 8.8.8.8
+RUN apk add chromium chromium-chromedriver
 WORKDIR /app
 ADD src ./src
 COPY requirements.txt .
