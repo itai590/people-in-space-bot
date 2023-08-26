@@ -1,8 +1,10 @@
 /* groovylint-disable CompileStatic, SimpleDateFormatMissingLocale */
 import java.text.SimpleDateFormat
 
-REPOSITORY = 'peopleinespace'
+REPOSITORY = "peopleinespace"
+PROJECT_PATH = "/home/pi/$REPOSITORY"
 ENV = 'dev'
+
 pipeline {
     agent {label 'raspi-slave1-agent'}
     stages {
@@ -22,16 +24,14 @@ pipeline {
                 }
                 script {
                     sh('hostname')
-                    sh("lsb_release -a")
+                    sh('lsb_release -a')
                     sh('pwd')
                     sh('ls -a')
 
-
-                    project_path="~/home/peopleinspace/"
-                    sh 'cp -R ./src $project_path/src'
-                    sh 'cp $project_path/requirements.txt'
-                    sh 'pip install -r requirements.txt'
-                    echo 'Build completed'
+                    sh "cp -R ./src $project_path/src"
+                    sh "cp $project_path/requirements.txt"
+                    sh "pip install -r requirements.txt"
+                    echo "Build completed"
                 }
             }
             post {
