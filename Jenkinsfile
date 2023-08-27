@@ -1,12 +1,12 @@
 /* groovylint-disable CompileStatic, SimpleDateFormatMissingLocale */
 import java.text.SimpleDateFormat
 
-REPOSITORY = "peopleinespace"
+REPOSITORY = 'peopleinespace'
 PROJECT_PATH = "/home/jenkins/$REPOSITORY"
 ENV = 'dev'
 
 pipeline {
-    agent {label 'raspi-slave1-agent'}
+    agent { label 'raspi-slave1-agent' }
     stages {
         stage('Pre Build') {
             steps {
@@ -28,6 +28,7 @@ pipeline {
                     sh('pwd')
                     sh('ls -a')
 
+                    // Dockerized build //
                     // def now = new Date()
                     // sdf = new SimpleDateFormat('MMddyyHHmmss')
                     // timestamp = sdf.format(now)
@@ -39,9 +40,8 @@ pipeline {
                     // sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
                     // sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
 
-
-                    sh "pip3 install -r requirements.txt"
-                    echo "Build completed"
+                    sh 'pip3 install -r requirements.txt'
+                    echo 'Build completed'
                 }
             }
             post {
@@ -54,18 +54,14 @@ pipeline {
             steps {
                 echo 'Deploy started'
 
-                echo "cronjob send update 0800 AM: crontab -e"
-
-                echo "startup bot at /etc/rc.local"
-                echo "Runnning rc.local after changes"
-                // sh '. /etc/rc.local'
-
-                //sh 'sudo reboot'
+                echo 'send_update cronjob 0800AM at crontab -e'
+                echo "peopleinespace_subscription_handler bot at /etc/rc.local startup as screen'"
+                echo 'Runnning rc.local after changes'
+                sh '. /etc/rc.local'
 
                 // # subscription_handler #
                 //sh 'docker compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
-
 
                 // # send_update #
                 // docker-compose up -d send_update
