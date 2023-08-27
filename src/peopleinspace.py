@@ -71,4 +71,4 @@ def scrape(number_only=False):
     return output
 
 if __name__ == "__main__":
-    scrape()
+    print(scrape())
