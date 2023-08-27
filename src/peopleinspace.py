@@ -69,3 +69,6 @@ def scrape(number_only=False):
     output = output.replace("Flight", "FLT")
 
     return output
+
+if __name__ == "__main__":
+    scrape()
