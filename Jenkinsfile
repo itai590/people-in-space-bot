@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                withCredentials([string(credentialsId: 'peopleinspace-DEV-env-file', variable: 'ENV_FILE')]) {
+                withCredentials([file(credentialsId: 'people in space bot DEV', variable: 'ENV_FILE')]) {
                     sh('echo $ENV_FILE > .env')
                 }
                 script {
