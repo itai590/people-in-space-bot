@@ -65,7 +65,7 @@ pipeline {
             steps {
                 echo 'Deploy started'
 
-                sh 'reboot'
+                sh 'sudo reboot'
 
 
 
