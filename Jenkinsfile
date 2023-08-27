@@ -59,7 +59,7 @@ pipeline {
 
                 echo "startup bot at /etc/rc.local"
                 echo "Runnning rc.local after changes"
-                //sh '/rc.local'
+                sh '. /etc/rc.local'
 
                 //sh 'sudo reboot'
 
