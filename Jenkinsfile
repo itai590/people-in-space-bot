@@ -41,17 +41,7 @@ pipeline {
                     // sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
 
 
-
-
-
-
-                  
-                    sh "cp -R ./src $PROJECT_PATH/src"
-                    sh "cp requirements.txt $PROJECT_PATH/requirements.txt"
                     sh "pip3 install -r requirements.txt"
-
-
-
                     echo "Build completed"
                 }
             }
@@ -65,13 +55,16 @@ pipeline {
             steps {
                 echo 'Deploy started'
 
-                sh 'sudo reboot'
+                echo "cronjob send update 0800 AM: crontab -e"
 
+                echo "startup bot at /etc/rc.local"
+                echo "Runnning rc.local after changes"
+                //sh '/rc.local'
 
-
+                //sh 'sudo reboot'
 
                 // # subscription_handler #
-                sh 'docker compose up -d subscription_handler'
+                //sh 'docker compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
 
 
