@@ -20,14 +20,13 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([file(credentialsId: 'people in space bot DEV', variable: 'ENV_FILE')]) {
-                    sh('echo $ENV_FILE > .env')
+                    sh('cat $ENV_FILE > .env')
                 }
                 script {
                     sh('hostname')
                     sh('lsb_release -a')
                     sh('pwd')
                     sh('ls -a')
-
 
                     // def now = new Date()
                     // sdf = new SimpleDateFormat('MMddyyHHmmss')
