@@ -1,5 +1,5 @@
 python-telegram-bot>=20.1
 bs4>=0.0.1
 requests>=2.30.0
-selenium>=4.10.0
+selenium==4.10.0
 lxml>=4.9.3
