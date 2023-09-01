@@ -55,7 +55,12 @@ pipeline {
                 echo 'Deploy started'
 
                 echo 'send_update cronjob 0800AM at crontab -e'
+                echo 
+                echo "################################################"
+                echo
                 echo "peopleinespace_subscription_handler bot at /etc/rc.local startup as screen'"
+                echo "Kill current peopleinespace_subscription_handler bot screen sesssion"
+                sh 'kill-screensession peopleinespace_subscription_handler'
                 echo 'Runnning rc.local after changes'
                 sh '. /etc/rc.local'
 
