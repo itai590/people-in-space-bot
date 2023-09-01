@@ -72,3 +72,4 @@ def scrape(number_only=False):
 
 if __name__ == "__main__":
     print(scrape())
+
