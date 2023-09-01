@@ -5,9 +5,12 @@ from user import User
 class Utilities():
 
     def read_json(filename):
-        f = open(filename, 'r')
-        data = json.load(f)  # dictionary
-        f.close()
+        try:
+            f = open(filename, 'r')
+            data = json.load(f)  # dictionary
+            f.close()
+        except FileNotFoundError:
+            data = {}
         return data
 
     def write_to_json(filename, data):
