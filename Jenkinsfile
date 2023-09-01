@@ -60,7 +60,7 @@ pipeline {
                 echo ""
                 echo "peopleinespace_subscription_handler bot at /etc/rc.local startup as screen'"
                 echo "Kill current peopleinespace_subscription_handler bot screen sesssion"
-                sh 'kill-screensession peopleinespace_subscription_handler'
+                sh 'screen -X -S peopleinespace_subscription_handler quit'
                 echo 'Runnning rc.local after changes'
                 sh '. /etc/rc.local'
 
