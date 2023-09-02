@@ -27,7 +27,7 @@ pipeline {
                     hostname
                     lsb_release -a
                     pwd
-                    la -a
+                    ls -a
                     '''
                     // sh('hostname')
                     // sh('lsb_release -a')
