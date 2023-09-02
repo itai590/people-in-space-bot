@@ -70,7 +70,7 @@ pipeline {
                 echo 'Runnning rc.local after changes'
 
                 sh '''#!/bin/bash
-                    set +x'
+                    set +x
                     . /etc/rc.local
                     '''
 
