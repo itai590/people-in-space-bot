@@ -42,8 +42,7 @@ RUN uname -a
 #     xvfb \
 #     zlib-dev
 
-# RUN apk add chromium chromium-chromedriver
-
+RUN apk add chromium chromium-chromedriver
 # RUN apt-get install chromium chromium-chromedriver
 # RUN apt-get install python3 python3-pip
 WORKDIR /app
