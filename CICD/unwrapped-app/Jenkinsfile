@@ -36,6 +36,14 @@ pipeline {
                 }
             }
         }
+        stage ('Pre Deploy') {
+            steps {
+                echo 'Pre Deploy started'
+                echo "Kill current peopleinespace_subscription_handler bot screen sesssion"
+                sh 'screen -X -S peopleinespace_subscription_handler quit || echo "No screen session to kill"'
+                echo 'Pre Deploy completed'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploy started'
@@ -44,10 +52,7 @@ pipeline {
                 echo "################################################"
                 echo ""
                 echo "peopleinespace_subscription_handler bot at /etc/rc.local startup as screen'"
-                echo "Kill current peopleinespace_subscription_handler bot screen sesssion"
-                sh 'screen -X -S peopleinespace_subscription_handler quit || echo "No screen session to kill"'
-                echo 'Runnning rc.local after changes'
-
+                echo 'Runnning rc.local'
                 sh '''#!/bin/bash
                     set +x
                     . /etc/rc.local
