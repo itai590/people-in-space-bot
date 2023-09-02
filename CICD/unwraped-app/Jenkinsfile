@@ -19,8 +19,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                withCredentials([file(credentialsId: 'people in space bot DEV', variable: 'ENV_FILE')]) {
-                    sh('cat $ENV_FILE > .env')
+                withCredentials([file(credentialsId: 'peopleinspace.envrcDEV', variable: 'ENVRC_FILE')]) {
+                    sh('cat $ENVRC_FILE > .envrc')
                 }
                 script {
                     sh('hostname')
