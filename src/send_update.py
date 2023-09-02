@@ -2,7 +2,7 @@ import requests
 
 import peopleinspace
 from logger import Logger
-from main import BotDefinitions
+from subscription_handler import BotDefinitions
 from utilities import Utilities as Util
 
 
