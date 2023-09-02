@@ -31,3 +31,18 @@ sudo docker-compose up --build -d  send_update
 sudo docker-compose up -d send_update
 docker logs peopleinespace_send_update
 ```
+
+
+
+#  /etc/rc.local
+
+## peopleinespace_subscription_handler startup application
+```sudo -u jenkins screen -dm -S peopleinespace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
+echo "peopleinespace_subscription_handler applicaion has been started"
+
+exit 0```
+
+
+# crontab -e
+```05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV && source .envrc && python3 src/send_update.py >> logs/send_updates_log.log a2>&1
+```
