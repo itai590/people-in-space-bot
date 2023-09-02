@@ -6,15 +6,6 @@ ENV = 'prod'
 pipeline {
     agent any
     stages {
-        stage('Pre Build') {
-            steps {
-                echo 'Pre Build started'
-                // TODO:
-                // Add stop + rm to relevant containers
-                // Add rmi to relevant images
-                echo 'Pre Build completed'
-            }
-        }
         stage('Build') {
             steps {
                 withCredentials([file(credentialsId: 'peopleinspace.envPROD', variable: 'ENV_FILE')]) {
@@ -44,16 +35,33 @@ pipeline {
                 }
             }
         }
+        stage('Pre Deploy') {
+            steps {
+                echo 'Pre Deploy started'
+
+                // stop + rm relevant containers
+                sh 'docker stop peopleinespace_subscription_handler || echo "No container to stop"'
+                sh 'docker rm peopleinespace_subscription_handler || echo "No container to remove"'
+
+                sh 'docker stop peopleinespace_send_update || echo "No container to stop"'
+                sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
+
+                // TODO: rmi relevant images
+                //sh 'docker rmi peopleinespace'
+
+                echo 'Pre Deploy completed'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploy started'
                 echo 'Deploying the Docker image..'
 
-                // # subscription_handler #
+                // subscription_handler //
                 sh 'docker compose up -d subscription_handler'
                 // docker logs peopleinespace_subscription_handler
 
-                // # send_update #
+                // send_update //
                 // docker-compose up -d send_update
                 // docker logs peopleinespace_send_update
                 echo 'Deploy completed'
