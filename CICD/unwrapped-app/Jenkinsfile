@@ -11,9 +11,6 @@ pipeline {
         stage('Pre Build') {
             steps {
                 echo 'Pre Build started'
-                // TODO:
-                // Add stop + rm to relevant containers
-                // Add rmi to relevant images
                 echo 'Pre Build completed'
             }
         }
@@ -29,23 +26,6 @@ pipeline {
                     pwd
                     ls -a
                     '''
-                    // sh('hostname')
-                    // sh('lsb_release -a')
-                    // sh('pwd')
-                    // sh('ls -a')
-
-                    // Dockerized build //
-                    // def now = new Date()
-                    // sdf = new SimpleDateFormat('MMddyyHHmmss')
-                    // timestamp = sdf.format(now)
-                    // IMAGE_TAG = timestamp + '-' + ENV
-                    // echo 'Build started'
-                    // echo 'Building the Docker image...'
-                    // sh "docker build --network host -t $REPOSITORY:latest ."
-                    // sh "docker tag $REPOSITORY:latest $REPOSITORY:$IMAGE_TAG"
-                    // sh "docker tag $REPOSITORY:latest $REPOSITORY:$ENV"
-                    // sh "docker tag $REPOSITORY:latest $REPOSITORY:$timestamp"
-
                     sh 'pip3 install -r requirements.txt'
                     echo 'Build completed'
                 }
@@ -59,7 +39,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy started'
-
                 echo 'send_update cronjob 0800AM at crontab -e'
                 echo  ""
                 echo "################################################"
@@ -73,14 +52,6 @@ pipeline {
                     set +x
                     . /etc/rc.local
                     '''
-
-                // # subscription_handler #
-                //sh 'docker compose up -d subscription_handler'
-                // docker logs peopleinespace_subscription_handler
-
-                // # send_update #
-                // docker-compose up -d send_update
-                // docker logs peopleinespace_send_update
                 echo 'Deploy completed'
             }
         }
