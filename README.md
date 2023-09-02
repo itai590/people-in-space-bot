@@ -3,7 +3,7 @@
 
 
 # Commands
-- hello - Commands and Explanations
+- start - Commands and Explanations
 - subscribe - Get daily updates
 - unsubscribe - Unsubscribe from the daily updates
 - howmany - Find the total number of people in space
