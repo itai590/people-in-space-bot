@@ -4,7 +4,8 @@ services:
     container_name: peopleinespace_subscription_handler
     image: peopleinespace:latest
     env_file:
-      - "/var/lib/jenkins/workspace/Pipeline BuildnDeploy peopleinspace-bot DEV/.env"
+      - .env
+      # - /var/lib/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_PROD/.env
     volumes:
       - ~/peopleinspace-bot/app/logs:/app/logs
       - ~/peopleinspace-bot/app/users.json:/app/users.json
