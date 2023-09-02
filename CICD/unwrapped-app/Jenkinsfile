@@ -23,10 +23,16 @@ pipeline {
                     sh('cat $ENVRC_FILE > .envrc')
                 }
                 script {
-                    sh('hostname')
-                    sh('lsb_release -a')
-                    sh('pwd')
-                    sh('ls -a')
+                    sh '''#!/bin/bash
+                    hostname
+                    lsb_release -a
+                    pwd
+                    la -a
+                    '''
+                    // sh('hostname')
+                    // sh('lsb_release -a')
+                    // sh('pwd')
+                    // sh('ls -a')
 
                     // Dockerized build //
                     // def now = new Date()
@@ -62,8 +68,11 @@ pipeline {
                 echo "Kill current peopleinespace_subscription_handler bot screen sesssion"
                 sh 'screen -X -S peopleinespace_subscription_handler quit'
                 echo 'Runnning rc.local after changes'
-                sh 'set +x'
-                sh '. /etc/rc.local'
+
+                sh '''#!/bin/bash
+                    set +x'
+                    . /etc/rc.local
+                    '''
 
                 // # subscription_handler #
                 //sh 'docker compose up -d subscription_handler'
