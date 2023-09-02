@@ -2,7 +2,7 @@
 import java.text.SimpleDateFormat
 
 REPOSITORY = 'peopleinespace'
-ENV = 'dev'
+ENV = 'prod'
 pipeline {
     agent any
     stages {
@@ -18,13 +18,13 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([file(credentialsId: 'peopleinspace.envPROD', variable: 'ENV_FILE')]) {
-                    sh('echo $ENV_FILE > .env')
+                    sh('cat $ENV_FILE > .env')
                 }
                 script {
-                    sh('hostname')
-                    sh("lsb_release -a")
-                    sh('pwd')
-                    sh('ls -a')
+                    sh '''hostname
+                    lsb_release -a
+                    pwd
+                    ls -a'''
                     def now = new Date()
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
                     timestamp = sdf.format(now)
