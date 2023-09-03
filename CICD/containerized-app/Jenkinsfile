@@ -52,8 +52,8 @@ pipeline {
                     echo "tags_to_delete: '${tags_to_delete}'"
                     sh """
                     for tag in $tags_to_delete; do
-                        echo 'Removing image: $tag'
-                        docker rmi $tag || echo 'No image to remove'
+                        echo 'Removing image: ${tag}'
+                        docker rmi ${tag} || echo 'No image to remove'
                     done"""
                     // worked: sh "docker rmi $tags_to_delete || echo 'No image to remove'"
                     // sh 'docker rmi $tags_to_delete || echo No_image_to_remove'
