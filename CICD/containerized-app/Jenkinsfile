@@ -13,11 +13,17 @@ pipeline {
                 script {
                     echo 'Pre Build started'
                     // ~ : /var/lib/jenkins
-                    sh "cd /home/pi || true"
                     sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
                     sh "touch ~/${REPOSITORY}-bot/app/users.json"
-                    //FIXME:?
-                    // sh "chmod 777 ~/${REPOSITORY}-bot/app/users.json"
+                    sh '''
+                    if [-s  ~/${REPOSITORY}-bot/app/users.json]
+                    then
+                        echo "users.json is not empty"
+                    else
+                        echo "users.json is empty"
+                        echo "{}" > ~/${REPOSITORY}-bot/app/users.json
+                    fi
+                    '''
                     echo 'Pre Build completed'
                 }
             }
