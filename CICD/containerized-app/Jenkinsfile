@@ -38,15 +38,16 @@ pipeline {
             steps {
                 echo 'Pre Deploy started'
 
-                // stop + rm relevant containers
+                // stop and remove subscription_handler container
                 sh 'docker stop peopleinespace_subscription_handler || echo "No container to stop"'
                 sh 'docker rm peopleinespace_subscription_handler || echo "No container to remove"'
-
+                
+                // stop and remove send_update container
                 sh 'docker stop peopleinespace_send_update || echo "No container to stop"'
                 sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
 
                 // remove relevant images
-                sh 'docker rmi -f $REPOSITORY:$IMAGE_TAG || echo "No image to remove"'
+                sh 'docker rmi -f $REPOSITORY:$ENV"-"*' || echo "No image to remove"'
 
                 echo 'Pre Deploy completed'
             }
