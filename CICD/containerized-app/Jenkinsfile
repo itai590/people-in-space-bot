@@ -51,7 +51,7 @@ pipeline {
 
                     // remove relevant images
                     def tags_to_delete = sh(script: "docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV-", returnStdout: true)
-                    tags_to_delete = tags_to_delete.replaceAll(REPOSITORY:IMAGE_TAG, '')
+                    tags_to_delete = tags_to_delete.replaceAll(REPOSITORY\:IMAGE_TAG, '')
                     tags_to_delete = tags_to_delete.replaceAll('\n', ' ')
                     sh "docker rmi ${tags_to_delete} || true"
 
