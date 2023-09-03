@@ -51,7 +51,7 @@ pipeline {
                     // sh 'docker rmi $(docker images | grep $REPOSITORY)'
 
 
-                    sh('docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV')
+                    sh "docker images --format '{{.Repository}}:{{.Tag}}' | grep $REPOSITORY:$ENV"
 
                     def tags_to_delete = sh(script: 'docker images --format {{.Repository}}:{{.Tag}} | grep ${REPOSITORY}:${ENV}', returnStdout: true).trim()
                     echo "tags_to_delete: '${tags_to_delete}'"
