@@ -4,6 +4,7 @@ RUN uname -a
 RUN apk add chromium chromium-chromedriver
 WORKDIR /app
 ADD src ./src
+RUN touch users.json
 # COPY users.json .
 # RUN chmod +rw users.json
 COPY requirements.txt .
