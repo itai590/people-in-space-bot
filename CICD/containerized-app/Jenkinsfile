@@ -68,7 +68,7 @@ pipeline {
                 docker logs peopleinespace_subscription_handler
 
                 // send_update //
-                docker-compose create -d send_update
+                docker compose create -d send_update
                 echo 'Deploy completed'
             }
         }

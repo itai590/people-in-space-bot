@@ -16,7 +16,7 @@
 ## Docker
 ### subscription_handler
 ```
-sudo docker-compose up -d subscription_handler
+sudo docker compose up -d subscription_handler
 docker logs peopleinspace_subscription_handler
 
 ```
@@ -24,8 +24,8 @@ docker logs peopleinspace_subscription_handler
 
 ### send_update
 ```
-sudo docker-compose up --build -d  send_update
-sudo docker-compose up -d send_update
+sudo docker compose up --build -d  send_update
+sudo docker compose up -d send_update
 docker logs peopleinspace_send_update
 ```
 
