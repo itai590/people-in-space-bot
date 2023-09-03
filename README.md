@@ -18,7 +18,6 @@
 
 ### subscription_handler
 ```
-
 sudo docker-compose up -d subscription_handler
 docker logs peopleinespace_subscription_handler
 
@@ -35,7 +34,8 @@ docker logs peopleinespace_send_update
 
 # subscription_handler startup application
 ##  /etc/rc.local
-```sudo -u jenkins screen -dm -S peopleinespace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
+```
+sudo -u jenkins screen -dm -S peopleinespace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
 echo "peopleinespace_subscription_handler applicaion has been started"
 
 exit 0
