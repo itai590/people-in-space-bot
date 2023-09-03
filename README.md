@@ -29,6 +29,13 @@ sudo docker-compose up -d send_update
 docker logs peopleinspace_send_update
 ```
 
+#### crontab -l
+TODO:
+```
+# m h  dom mon dow   command
+05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV      && . .envrc     &&  docker run bla_bla                          python3 src/send_update.py >> logs/send_updates_log.log 2>&1
+```
+
 ## Unwrapped app
 ### subscription_handler startup application
 ####  /etc/rc.local
