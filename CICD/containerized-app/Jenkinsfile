@@ -40,23 +40,17 @@ pipeline {
                     echo 'Pre Deploy started'
 
                     // stop and remove subscription_handler container
-                    sh 'docker stop peopleinespace_subscription_handler || echo "No container to stop"'
-                    sh 'docker rm peopleinespace_subscription_handler || echo "No container to remove"'
+                    sh 'docker stop peopleinespace_subscription_handler || true'
+                    sh 'docker rm peopleinespace_subscription_handler || true'
                     
                     // stop and remove send_update container
-                    sh 'docker stop peopleinespace_send_update || echo "No container to stop"'
-                    sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
+                    sh 'docker stop peopleinespace_send_update || true'
+                    sh 'docker rm peopleinespace_send_update || true'
 
                     // remove relevant images
                     def tags_to_delete = sh(script: "docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV-", returnStdout: true)
                     tags_to_delete = tags_to_delete.replaceAll('\n', ' ')
-
-                    echo "tags_to_delete: '${tags_to_delete}'"
-                    sh "docker rmi ${tags_to_delete} || echo 'No image to remove'"
-                    // worked: sh "docker rmi $tags_to_delete || echo 'No image to remove'"
-                    // sh 'docker rmi $tags_to_delete || echo No_image_to_remove'
-                    // sh 'docker rmi $(docker images | grep $REPOSITORY:$ENV || echo "No image to remove"'
-
+                    sh "docker rmi ${tags_to_delete} || true"
 
                     echo 'Pre Deploy completed'
                 }
