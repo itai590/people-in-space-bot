@@ -33,7 +33,7 @@ docker logs peopleinespace_send_update
 ```
 
 
-# peopleinespace subscription_handler startup application
+# subscription_handler startup application
 ##  /etc/rc.local
 ```sudo -u jenkins screen -dm -S peopleinespace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
 echo "peopleinespace_subscription_handler applicaion has been started"
@@ -41,7 +41,8 @@ echo "peopleinespace_subscription_handler applicaion has been started"
 exit 0
 ```
 
-# peopleinespace send_update cron job
-# crontab -e
-```05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV && source .envrc && python3 src/send_update.py >> logs/send_updates_log.log a2>&1
+# send_update cron job
+## crontab -e
+```
+05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV && source .envrc && python3 src/send_update.py >> logs/send_updates_log.log a2>&1
 ```
