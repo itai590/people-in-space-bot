@@ -40,7 +40,8 @@ exit 0
 ```
 
 ### send_update cron job
-#### crontab -e
+#### crontab -l
 ```
-05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV && source .envrc && python3 src/send_update.py >> logs/send_updates_log.log a2>&1
+05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV && source .envrc && python3 src/send_update.py >> logs/send_updates_log.log 2>&1
 ```
+cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV && source .envrc && python3 src/send_update.py >> logs/send_updates_log.log 2>&1

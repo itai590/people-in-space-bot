@@ -47,7 +47,7 @@ pipeline {
                 sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
 
                 // remove relevant images
-                sh 'docker rmi -f $REPOSITORY:$ENV"-"*' || echo "No image to remove"'
+                sh '''docker rmi -f $REPOSITORY:$ENV"-"*' || echo "No image to remove"'''
 
                 echo 'Pre Deploy completed'
             }
