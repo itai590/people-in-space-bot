@@ -36,27 +36,29 @@ pipeline {
         }
         stage('Pre Deploy') {
             steps {
-                echo 'Pre Deploy started'
+                script {
+                    echo 'Pre Deploy started'
 
-                // stop and remove subscription_handler container
-                sh 'docker stop peopleinespace_subscription_handler || echo "No container to stop"'
-                sh 'docker rm peopleinespace_subscription_handler || echo "No container to remove"'
+                    // stop and remove subscription_handler container
+                    sh 'docker stop peopleinespace_subscription_handler || echo "No container to stop"'
+                    sh 'docker rm peopleinespace_subscription_handler || echo "No container to remove"'
+                    
+                    // stop and remove send_update container
+                    sh 'docker stop peopleinespace_send_update || echo "No container to stop"'
+                    sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
+
+                    // remove relevant images
+                    // sh 'docker rmi $(docker images | grep $REPOSITORY)'
+
+                    def tags_to_delete = sh(script: 'docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV', returnStdout: true).trim()
+                    echo tags_to_delete
                 
-                // stop and remove send_update container
-                sh 'docker stop peopleinespace_send_update || echo "No container to stop"'
-                sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
-
-                // remove relevant images
-                // sh 'docker rmi $(docker images | grep $REPOSITORY)'
-
-                def tags_to_delete = sh(script: 'docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV', returnStdout: true).trim()
-                echo tags_to_delete
-               
-                // sh 'docker rmi $(docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV)'
-                // sh 'docker rmi $(docker images | grep $REPOSITORY:$ENV || echo "No image to remove"'
+                    // sh 'docker rmi $(docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV)'
+                    // sh 'docker rmi $(docker images | grep $REPOSITORY:$ENV || echo "No image to remove"'
 
 
-                echo 'Pre Deploy completed'
+                    echo 'Pre Deploy completed'
+                }
             }
         }
         stage('Deploy') {
