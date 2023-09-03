@@ -57,6 +57,8 @@ class SubscriptionHandlerBot():
         user = User(update.effective_user.first_name, update.effective_user.last_name, user['username'], user['id'])
         Logger.log_user_call(user, "users")
         ans = Util._get_users(BotDefinitions.USERS_FILENAME)
+        if ans == "":
+            ans = "No users subscribed"
         await update.message.reply_text(f"{ans}")
 
     async def howmany(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
