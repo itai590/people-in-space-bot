@@ -14,7 +14,7 @@ pipeline {
                     echo 'Pre Build started'
                     // ~ : /var/lib/jenkins
                     sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
-                    sh "touch ~/${REPOSITORY}/app/users.json"
+                    sh "touch ~/${REPOSITORY}-bot/app/users.json"
                     echo 'Pre Build completed'
                 }
             }
