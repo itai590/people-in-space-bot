@@ -48,7 +48,7 @@ pipeline {
                     sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
 
                     // remove relevant images
-                    def tags_to_delete = sh(script: "docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV-", returnStdout: true).trim()
+                    def tags_to_delete = sh(script: "docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV-", returnStdout: true)
                     echo "tags_to_delete: '${tags_to_delete}'"
                     sh "docker rmi ${tags_to_delete} || echo 'No image to remove'"
                     // worked: sh "docker rmi $tags_to_delete || echo 'No image to remove'"
