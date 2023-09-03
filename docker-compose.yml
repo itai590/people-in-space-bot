@@ -5,8 +5,8 @@ services:
     image: peopleinespace:latest
     env_file:
       - .env
-      # - /var/lib/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_PROD/.env
     volumes:
+      #TODO:
       - ~/peopleinspace-bot/app/logs:/app/logs
       - ~/peopleinspace-bot/app/users.json:/app/users.json
     restart: always
