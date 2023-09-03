@@ -49,7 +49,7 @@ pipeline {
                 // remove relevant images
                 // sh 'docker rmi $(docker images | grep $REPOSITORY)'
 
-                sh '''docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $REPOSITORY:$ENV)'''
+                sh 'docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $REPOSITORY:$ENV)'
 
                 // sh 'docker rmi $(docker images | grep $REPOSITORY:$ENV || echo "No image to remove"'
 
