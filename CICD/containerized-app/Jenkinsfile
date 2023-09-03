@@ -13,8 +13,9 @@ pipeline {
             steps {
                 script {
                     echo 'Pre Build started'
-                    sh "mkdir -p ${mounted_volume}/app/ ${mounted_volume}/logs"
-                    sh "cd ${mounted_volume}/app"
+                    sh "cd ${mounted_volume}"
+                    sh "mkdir -p /app/ /logs"
+                    sh "cd app/"
                     sh "touch users.json"
                     echo 'Pre Build completed'
                 }
