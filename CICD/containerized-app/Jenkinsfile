@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat
 REPOSITORY = 'peopleinespace'
 ENV = 'prod'
 def IMAGE_TAG
+mounted_volume = '/home/pi/peopleinspace-bot'
 
 pipeline {
     agent any
@@ -12,7 +13,7 @@ pipeline {
             steps {
                 script {
                     echo 'Pre Build started'
-                    sh "mkdir -p app/logs/"
+                    sh "mkdir -p ${mounted_volume}/app/logs/"
                     sh "touch app/users.json"
                     echo 'Pre Build completed'
                 }
