@@ -20,7 +20,7 @@ pipeline {
                     def now = new Date()
                     sdf = new SimpleDateFormat('MMddyyHHmmss')
                     timestamp = sdf.format(now)
-                    IMAGE_TAG = ENV + '-' + timestamp
+                    IMAGE_TAG = ENV + '-' + env.BUILD_ID
                     echo 'Build started'
                     echo 'Building the Docker image...'
                     sh "docker build -t $REPOSITORY:latest ."
@@ -49,7 +49,7 @@ pipeline {
                 // remove relevant images
                 // sh 'docker rmi $(docker images | grep $REPOSITORY)'
 
-                sh 'docker rmi $(docker images --format "{{.Repository}}:{{.Tag}}" | grep $REPOSITORY:$ENV)'
+                sh("docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $REPOSITORY:$ENV)")
 
                 // sh 'docker rmi $(docker images | grep $REPOSITORY:$ENV || echo "No image to remove"'
 
