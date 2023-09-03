@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat
 
 REPOSITORY = 'peopleinespace'
 ENV = 'prod'
+def IMAGE_TAG
 pipeline {
     agent any
     stages {
@@ -44,8 +45,8 @@ pipeline {
                 sh 'docker stop peopleinespace_send_update || echo "No container to stop"'
                 sh 'docker rm peopleinespace_send_update || echo "No container to remove"'
 
-                // TODO: rmi relevant images
-                //sh 'docker rmi peopleinespace'
+                // remove relevant images
+                sh 'docker rmi -f $REPOSITORY:$IMAGE_TAG || echo "No image to remove"'
 
                 echo 'Pre Deploy completed'
             }
