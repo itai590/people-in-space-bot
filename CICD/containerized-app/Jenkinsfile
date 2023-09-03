@@ -1,7 +1,7 @@
 /* groovylint-disable CompileStatic, SimpleDateFormatMissingLocale */
 import java.text.SimpleDateFormat
 
-REPOSITORY = 'peopleinespace'
+REPOSITORY = 'peopleinspace'
 ENV = 'prod'
 def IMAGE_TAG
 
@@ -13,6 +13,7 @@ pipeline {
                 script {
                     echo 'Pre Build started'
                     // ~ : /var/lib/jenkins
+                    sh "cd /home/pi || true"
                     sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
                     sh "touch ~/${REPOSITORY}-bot/app/users.json"
                     //FIXME:?
@@ -55,12 +56,12 @@ pipeline {
                     echo 'Pre Deploy started'
 
                     // stop and remove subscription_handler container
-                    sh 'docker stop peopleinespace_subscription_handler || true'
-                    sh 'docker rm peopleinespace_subscription_handler || true'
+                    sh 'docker stop peopleinspace_subscription_handler || true'
+                    sh 'docker rm peopleinspace_subscription_handler || true'
                     
                     // stop and remove send_update container
-                    sh 'docker stop peopleinespace_send_update || true'
-                    sh 'docker rm peopleinespace_send_update || true'
+                    sh 'docker stop peopleinspace_send_update || true'
+                    sh 'docker rm peopleinspace_send_update || true'
 
                     // remove relevant images
                     def tags_to_delete = sh(script: "docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV-", returnStdout: true)
@@ -80,7 +81,7 @@ pipeline {
 
                 // subscription_handler //
                 sh 'docker compose up -d subscription_handler'
-                sh 'docker logs peopleinespace_subscription_handler'
+                sh 'docker logs peopleinspace_subscription_handler'
 
                 // send_update //
                 sh 'docker compose create send_update'

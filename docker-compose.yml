@@ -2,8 +2,8 @@ version: '2'
 services:
   subscription_handler:
     build: .
-    container_name: peopleinespace_subscription_handler
-    image: peopleinespace:latest
+    container_name: peopleinspace_subscription_handler
+    image: peopleinspace:latest
     env_file:
       - .env
     volumes:
@@ -14,8 +14,8 @@ services:
 
   send_update:
 
-    container_name: peopleinespace_send_update
-    image: peopleinespace:latest
+    container_name: peopleinspace_send_update
+    image: peopleinspace:latest
     build: .
     command: python src/send_update.py
     env_file:
