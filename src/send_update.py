@@ -30,3 +30,4 @@ if __name__ == "__main__":
     Logger.log_info("send_update started")
     SendUpdatesBot.send_updates(BotDefinitions.BOT_TOKEN, BotDefinitions.USERS_FILENAME, peopleinspace.scrape())
     Logger.log_info("send_update finished")
+    # force new container
