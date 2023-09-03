@@ -49,10 +49,16 @@ pipeline {
                 // remove relevant images
                 // sh 'docker rmi $(docker images | grep $REPOSITORY)'
 
-                sh '''
-                docker rmi $(docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV)
-                '''
-
+                def tags_to_delete = sh(script: 'docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV', returnStdout: true).trim()
+                
+                echo tags_to_delete
+                if (tags_to_delete) {
+                    
+                    //sh "docker rmi $tags_to_delete"
+                } else {
+                    echo 'No image to remove'
+                }
+                // sh 'docker rmi $(docker images --format {{.Repository}}:{{.Tag}} | grep $REPOSITORY:$ENV)'
                 // sh 'docker rmi $(docker images | grep $REPOSITORY:$ENV || echo "No image to remove"'
 
 
