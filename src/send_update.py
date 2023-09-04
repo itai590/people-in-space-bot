@@ -1,5 +1,5 @@
 import requests
-
+import sys
 import peopleinspace
 from logger import Logger
 from subscription_handler import BotDefinitions
@@ -24,9 +24,14 @@ class SendUpdatesBot():
 
 
 if __name__ == "__main__":
-    #TODO
-    # Add SDTIN as message for send_release_notes
     Logger.set_logger()
-    Logger.log_info("send_update started")
-    SendUpdatesBot.send_updates(BotDefinitions.BOT_TOKEN, BotDefinitions.USERS_FILENAME, peopleinspace.scrape())
-    Logger.log_info("send_update finished")    
+    Logger.set_logger()
+    if len(sys.argv) > 1:
+        notification = sys.argv[1]
+        Logger.log_info("using notification from command line:\n" + notification)
+    else:
+        Logger.log_info("command line argument was not given, scraping peopleinspace")
+        notification = peopleinspace.scrape()
+    Logger.log_info("sending updates..")
+    SendUpdatesBot.send_updates(BotDefinitions.BOT_TOKEN, BotDefinitions.USERS_FILENAME, message=notification)
+    Logger.log_info("sending updates finished successfully")    
