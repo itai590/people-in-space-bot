@@ -2,13 +2,14 @@
 
 
 
-# Commands
-- start - Commands and Explanations
-- subscribe - Get daily updates
-- unsubscribe - Unsubscribe from the daily updates
-- howmany - Find the total number of people in space
-- howmanydetailed - View details about people in space
-
+## Commands
+```
+start - Commands and Explanations
+subscribe - Get daily updates
+unsubscribe - Unsubscribe from the daily updates
+howmany - Find the total number of people in space
+howmanydetailed - View details about people in space
+```
 
 
 ## Docker
@@ -41,9 +42,6 @@ docker logs peopleinspace_send_update
 
 
 
-
-
-
 ## Unwrapped app
 ### Start application from compose file
 #### subscription_handler
@@ -51,7 +49,9 @@ docker logs peopleinspace_send_update
 python3 src/subscription_handler.py
 ```
 #### send_update
+```
 python3 src/send_update.py
+```
 
 ### Deploy
 
