@@ -1,5 +1,7 @@
-import requests
 import sys
+
+import requests
+
 import peopleinspace
 from logger import Logger
 from subscription_handler import BotDefinitions
@@ -24,7 +26,6 @@ class SendUpdatesBot():
 
 
 if __name__ == "__main__":
-    Logger.set_logger()
     Logger.set_logger()
     if len(sys.argv) > 1:
         notification = sys.argv[1]
