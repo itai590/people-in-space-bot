@@ -19,7 +19,6 @@ howmanydetailed - View details about people in space
 ```
 sudo docker compose up -d subscription_handler
 docker logs peopleinspace_subscription_handler
-
 ```
 #### send_update
 ```
@@ -45,24 +44,18 @@ docker logs peopleinspace_send_update
 ## Unwrapped app
 ### Start application from compose file
 #### subscription_handler
-```
-python3 src/subscription_handler.py
-```
+```python3 src/subscription_handler.py```
 #### send_update
-```
-python3 src/send_update.py
-```
+```python3 src/send_update.py```
 
 ### Deploy
 
 ### The subscription_handler is deployed on /etc/rc.local  as startup application
 ####  cat /etc/rc.local
-```
-sudo -u jenkins screen -dm -S peopleinspace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
+```sudo -u jenkins screen -dm -S peopleinspace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
 echo "peopleinspace_subscription_handler application has been started"
 
-exit 0
-```
+exit 0```
 
 ### The send_update is is deployed on cronjob
 #### crontab -l
