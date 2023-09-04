@@ -55,11 +55,11 @@ docker logs peopleinspace_send_update
 ```sudo -u jenkins screen -dm -S peopleinspace_subscription_handler bash -c 'cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV; source .envrc;  python3 src/subscription_handler.py; exec bash'
 echo "peopleinspace_subscription_handler application has been started"
 
-exit 0```
+exit 0
+```
 
 ### The send_update is is deployed on cronjob
 #### crontab -l
-```
-# m h  dom mon dow   command
+```# m h  dom mon dow   command
 05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV      && . .envrc     &&                            python3 src/send_update.py >> logs/send_updates_log.log 2>&1
 ```
