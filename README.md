@@ -3,11 +3,11 @@
 
 
 ## Commands
-[] start - Commands and Explanations
-[] subscribe - Get daily updates
-[] unsubscribe - Unsubscribe from the daily updates
-[] howmany - Find the total number of people in space
-[] howmanydetailed - View details about people in space
+[]start - Commands and Explanations
+[]subscribe - Get daily updates
+[]unsubscribe - Unsubscribe from the daily updates
+[]howmany - Find the total number of people in space
+[]howmanydetailed - View details about people in space
 
 
 
