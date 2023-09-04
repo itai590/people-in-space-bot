@@ -42,7 +42,7 @@ docker logs peopleinspace_send_update
 
 
 ## Unwrapped app
-### Start application from compose file
+### Start application
 #### subscription_handler
 ```python3 src/subscription_handler.py```
 #### send_update
