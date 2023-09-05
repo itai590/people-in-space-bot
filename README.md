@@ -33,7 +33,8 @@ docker logs peopleinspace_send_update
 ##### crontab -l
 ```
 # m h  dom mon dow   command
-05 08 * * * cd /var/lib/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_PROD    &&   docker start peopleinspace_send_update
+
+05 08  * * * docker start peopleinspace_send_update
 ```
 
 
