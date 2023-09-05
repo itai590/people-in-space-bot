@@ -23,9 +23,8 @@ pipeline {
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
                     echo "user content: $user_content"
                     sh """
-                    if [ -z  $user_content ];
-                    then
-                        echo "users.json is  empty"
+                    if [ -z  $user_content ] then
+                        echo "users.json is empty"
                         echo "{}" > ~/${REPOSITORY}-bot/app/users.json
                     else
                         echo "users.json is not empty"     
