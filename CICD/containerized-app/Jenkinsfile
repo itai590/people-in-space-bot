@@ -27,14 +27,16 @@ pipeline {
 
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
                     echo "user content: $user_content"
-                    
+
                     sh """
+                    set +x
                     if [ -z  '$user_content' ]; then
                         echo "users.json is empty"
                         echo "{}" > $users_file
                     else
                         echo "users.json is not empty"     
                     fi
+                    set -x
                     """
                     echo 'Pre Build completed'
                 }
