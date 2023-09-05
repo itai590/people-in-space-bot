@@ -20,12 +20,12 @@ pipeline {
                     echo "$users_file"
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
                     sh """
-                    if [ -z  $user_content ];
+                    if [ -z  ${user_content} ];
                     then
-                        echo "users.json is not empty"
-                    else
-                        echo "users.json is empty"
+                        echo "users.json is  empty"
                         echo "{}" > ~/${REPOSITORY}-bot/app/users.json
+                    else
+                        echo "users.json is not empty"     
                     fi
                     """
                     echo 'Pre Build completed'
