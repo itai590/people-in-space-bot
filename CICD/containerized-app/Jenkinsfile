@@ -12,6 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Pre Build started'
+                    // Create app directory with logs and users.json if not exists
                     // ~ : /var/lib/jenkins
                     sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
                     sh "touch ~/${REPOSITORY}-bot/app/users.json"
