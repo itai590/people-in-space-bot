@@ -26,7 +26,7 @@ pipeline {
                     // if users.json is empty, add empty json object
                     sh '''
                     set +x
-                    if [ -z  '$user_content' ]; then
+                    if [ -z  $user_content ]; then
                         echo "users.json is empty"
                         echo "{}" > $users_file
                     else
