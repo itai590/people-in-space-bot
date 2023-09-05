@@ -18,7 +18,7 @@ pipeline {
                     sh "touch ~/${REPOSITORY}-bot/app/users.json"
                     users_file = "~/${REPOSITORY}-bot/app/users.json"
                     sh """
-                    if [ -z  $cat(${users_file}) ];
+                    if [ -z  $(cat ${users_file}) ];
                     then
                         echo "users.json is not empty"
                     else
