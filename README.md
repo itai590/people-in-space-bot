@@ -61,5 +61,5 @@ exit 0
 #### crontab -l
 ```
 # m h  dom mon dow   command
-05 08 * * * cd ~/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV      && . .envrc     &&                            python3 src/send_update.py >> logs/send_updates_log.log 2>&1
+05 08 * * * cd /home/jenkins/workspace/Pipeline_BuildnDeploy_peopleinspace_bot_DEV      && . ./.envrc     &&                            python3 src/send_update.py >> logs/send_updates_log.log 2>&1
 ```
