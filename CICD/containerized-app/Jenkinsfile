@@ -16,18 +16,14 @@ pipeline {
                     // ~ : /var/lib/jenkins
 
                     APP_DIR = "~/${REPOSITORY}-bot/app"
-                    
                     // create app directory if not exists
                     sh "mkdir -p ${APP_DIR}/logs/"
 
                     // create users.json if not exists
                     users_file = "${APP_DIR}/users.json"
                     sh "touch $users_file"
-                    echo "$users_file"
-
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
-                    echo "user content: $user_content"
-
+                    // if users.json is empty, add empty json object
                     sh '''
                     set +x
                     if [ -z  '$user_content' ]; then
