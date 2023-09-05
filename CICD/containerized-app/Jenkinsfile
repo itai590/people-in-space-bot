@@ -17,7 +17,7 @@ pipeline {
                     sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
                     sh "touch ~/${REPOSITORY}-bot/app/users.json"
                     users_file = "~/${REPOSITORY}-bot/app/users.json"
-                    echo $users_file
+                    echo "$users_file"
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
                     sh """
                     if [ -z  $user_content ];
