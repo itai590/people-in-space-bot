@@ -16,8 +16,9 @@ pipeline {
                     // ~ : /var/lib/jenkins
                     sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
                     sh "touch ~/${REPOSITORY}-bot/app/users.json"
+                    users_file = "~/${REPOSITORY}-bot/app/users.json"
                     sh """
-                    if [ -z  $cat(~/${REPOSITORY}-bot/app/users.json) ];
+                    if [ -z  $cat(${users_file}) ];
                     then
                         echo "users.json is not empty"
                     else
