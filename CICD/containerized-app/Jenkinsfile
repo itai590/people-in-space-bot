@@ -14,13 +14,16 @@ pipeline {
                     echo 'Pre Build started'
                     // Create app directory with logs and users.json if not exists
                     // ~ : /var/lib/jenkins
-                    sh "mkdir -p ~/${REPOSITORY}-bot/app/logs/"
-                    sh "touch ~/${REPOSITORY}-bot/app/users.json"
-                    users_file = "~/${REPOSITORY}-bot/app/users.json"
+
+                    APP_DIR = "~/${REPOSITORY}-bot/app"
+                    sh "mkdir -p ${APP_DIR}/logs/"
+                    users_file = "${APP_DIR}/users.json"
+                    sh "touch $users_file"
                     echo "$users_file"
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
+                    echo "user content: $user_content"
                     sh """
-                    if [ -z  ${user_content} ];
+                    if [ -z  $user_content ];
                     then
                         echo "users.json is  empty"
                         echo "{}" > ~/${REPOSITORY}-bot/app/users.json
