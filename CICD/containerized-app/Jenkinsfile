@@ -12,18 +12,23 @@ pipeline {
             steps {
                 script {
                     echo 'Pre Build started'
-                    // Create app directory with logs and users.json if not exists
+                    // Create app directory with logs and users.json if not exists on first time build
                     // ~ : /var/lib/jenkins
 
                     APP_DIR = "~/${REPOSITORY}-bot/app"
+                    
+                    // create app directory if not exists
                     sh "mkdir -p ${APP_DIR}/logs/"
+
+                    // create users.json if not exists
                     users_file = "${APP_DIR}/users.json"
                     sh "touch $users_file"
                     echo "$users_file"
+
                     user_content = sh(script: "cat ${users_file}", returnStdout: true)
                     echo "user content: $user_content"
                     sh """
-                    if [ -z  $user_content ]; then
+                    if [ -z  '$user_content' ]; then
                         echo "users.json is empty"
                         echo "{}" > $users_file
                     else
