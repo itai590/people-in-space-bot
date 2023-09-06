@@ -8,10 +8,10 @@ def IMAGE_TAG
 pipeline {
     agent any
     stages {
-        stage('Pre Build') {
+        stage('First Build Configuration') {
             steps {
                 script {
-                    echo 'Pre Build started'
+                    echo 'First Build Configuration started'
                     // Create app directory with logs and users.json if not exists on first time build
                     // ~ : /var/lib/jenkins
 
@@ -34,7 +34,7 @@ pipeline {
                     fi
                     set -x
                     '''
-                    echo 'Pre Build completed'
+                    echo 'First Build Configuration completed'
                 }
             }
         }
@@ -65,11 +65,11 @@ pipeline {
                 }
             }
         }
-        stage('Pre Deploy') {
+        stage('Stop and Remove Last Deploy') {
             steps {
                 script {
 
-                    echo 'Pre Deploy started'
+                    echo 'Stop and Remove Last Deploy started'
 
                     // stop and remove subscription_handler container
                     sh 'docker stop peopleinspace_subscription_handler || true'
@@ -86,7 +86,7 @@ pipeline {
                     tags_to_delete = tags_to_delete.replaceAll('\n', ' ')
                     sh "docker rmi ${tags_to_delete} || true"
 
-                    echo 'Pre Deploy completed'
+                    echo 'Stop and Remove Last Deploy completed'
                 }
             }
         }
