@@ -39,6 +39,7 @@ def scrape(number_only=False):
     
     end_time = time.time()
     fetch_time = end_time - start_time
+    fetch_time = "\n\n🕒 Fetch time: " + str(round(fetch_time,3)) + " seconds"
     
     html = BeautifulSoup(driver.page_source, 'lxml')
 
@@ -47,7 +48,7 @@ def scrape(number_only=False):
 
     people_in_space = html.h1.get_text()  # html.find('a', id="container").h1.get_text()
     if number_only:
-        return people_in_space
+        return people_in_space + fetch_time
     
     persons = html.find('div', id='listing')
 
@@ -73,7 +74,7 @@ def scrape(number_only=False):
     output = output.replace("Colonel", "Col.")
     output = output.replace("Lieutenant", "Lt.")
     output = output.replace("Flight", "FLT")
-    output += "\n\n🕒 " + str(fetch_time) + " seconds"
+    output += fetch_time
     return output
 
 if __name__ == "__main__":

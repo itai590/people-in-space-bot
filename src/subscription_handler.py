@@ -26,10 +26,10 @@ class SubscriptionHandlerBot:
 
         hello_msg = "Welcome to people in space updates bot.\nA daily update will be sent every morning 08:00AM IL Time."
         format_explanation = "\nFormat Explanation:\n \
-            🚀   🪐  🌍    10 🧑‍🚀🧑‍🚀\n \
-            🚀   🪐  🌍    <Number of people in space> 🧑‍🚀🧑‍🚀\n \
-            1.Jame James🇺🇸 - FLT Eng. - 120 \n \
-            1<Name> <Country> - <Role> - <Days in space>\n"
+        🚀   🪐  🌍    10 🧑‍🚀🧑‍🚀\n \
+        🚀   🪐  🌍 Number of people in space 🧑‍🚀🧑‍🚀\n \
+        1.Jame James🇺🇸 - FLT Eng. - 120 \n \
+        Name  - Country - Role - Days in space\n"
 
         ans = f'{hello_msg}\n{format_explanation}'
 
