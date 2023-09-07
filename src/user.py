@@ -9,7 +9,7 @@ class User:
         self._last_name = last_name
         self._user_name = user_name
         self._chat_id = chat_id
-        self.member_since = "now"
+        self.member_since("now")
 
     def full_name(self):
         last_name = " " + self.last_name if self.last_name != "" else ""
@@ -43,10 +43,10 @@ class User:
 
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} ({self.member_since})"
+        return f"{self.first_name} {self.last_name} ({self.member_since()})"
 
     def __repr__(self):
-        return f"<{self.chat_id}> {self.first_name} {self.last_name()} ({self.member_since})"
+        return f"<{self.chat_id}> {self.first_name} {self.last_name()} ({self.member_since()})"
 
     def __eq__(self, other):
         return self.chat_id == other.chat_id()

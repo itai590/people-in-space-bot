@@ -28,12 +28,18 @@ def scrape(number_only=False):
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(options=chrome_options)
+    
+    start_time = time.time()
 
     driver.get(URL)
     time.sleep(2)
 
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(5)
+    
+    end_time = time.time()
+    fetch_time = end_time - start_time
+    
     html = BeautifulSoup(driver.page_source, 'lxml')
 
     # print(html)
@@ -67,7 +73,7 @@ def scrape(number_only=False):
     output = output.replace("Colonel", "Col.")
     output = output.replace("Lieutenant", "Lt.")
     output = output.replace("Flight", "FLT")
-
+    output += "\n\n🕒 " + str(fetch_time) + " seconds"
     return output
 
 if __name__ == "__main__":
