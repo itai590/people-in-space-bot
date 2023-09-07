@@ -9,8 +9,8 @@ class User:
         self._last_name = last_name
         self._user_name = user_name
         self._chat_id = chat_id
-        if member_since is not None:
-            self.member_since = member_since
+        if member_since:
+            self._member_since = member_since
         else:
             self.member_since = "trigger setter"
 

@@ -1,6 +1,6 @@
 import json
 from user import User
-import logging
+from logger import Logger
 
 class Utilities():
 
@@ -36,10 +36,12 @@ class Utilities():
         ans = ""
         dict = Utilities.read_json(filename)
         print("dict= ", dict)
-        if json:
+        Logger.log_info("dict= " + str(dict))
+        if json:     
             return dict
         for key in dict:
             print("key= ", key)
+            print( "_member_since= ", dict[key]["_member_since"])
             u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"], dict[key]["_member_since"])
             ans += u.__str__() + "\n"
         return ans

@@ -3,7 +3,7 @@ import logging
 import sys
 
 
-class Logger():
+class Logger:
 
     def set_logger():
         root = logging.getLogger()
@@ -15,6 +15,7 @@ class Logger():
         handler.setFormatter(formatter)
         root.addHandler(handler)
         logging.info("setting logger")
+        return root
 
     def log_info(msg):
         logging.info(msg)
@@ -39,3 +40,11 @@ class Logger():
         f.write(dateandtime + " " + log_txt)
         f.write("\n")
         f.close()
+        
+        
+    def abort(abort_msg, log=True):
+        if log:
+            logging.info(abort_msg)
+            logging.info("aborting\n")
+        exit()
+
