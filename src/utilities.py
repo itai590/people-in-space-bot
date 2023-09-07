@@ -35,12 +35,10 @@ class Utilities():
     def _get_users(filename, json=False):
         ans = ""
         dict = Utilities.read_json(filename)
-        logging.info("dict= ", dict)
         print("dict= ", dict)
         if json:
             return dict
         for key in dict:
-            logging.info("key= ", key)
             print("key= ", key)
             u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"], dict[key]["_member_since"])
             ans += u.__str__() + "\n"
