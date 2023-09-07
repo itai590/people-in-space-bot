@@ -39,6 +39,6 @@ class Utilities():
         if json:
             return dict
         for key in dict:
-            u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"])
+            u = User(dict[key]["_first_name"], dict[key]["_last_name"], dict[key]["_user_name"], dict[key]["_chat_id"], dict[key]["_member_since"])
             ans += u.__str__() + "\n"
         return ans

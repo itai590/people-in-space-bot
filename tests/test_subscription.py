@@ -29,6 +29,7 @@ if __name__ == "__main__":
     users.update({my_user.chat_id: my_user.__dict__})
     users.update({my_user.chat_id: my_user.__dict__})
     print(my_user.chat_id in users)
+    print(my_user.member_since)
 
     print("users after=", users)
 

@@ -4,12 +4,16 @@ DATE_FORMAT = '%d.%m.%Y'
 
 
 class User:
-    def __init__(self, first_name, last_name, user_name, chat_id):
+    def __init__(self, first_name, last_name, user_name, chat_id, member_since=None):
         self._first_name = first_name
         self._last_name = last_name
         self._user_name = user_name
         self._chat_id = chat_id
-        self.member_since("now")
+        if member_since is not None:
+            self.member_since = member_since
+        else:
+            self.member_since = "trigger setter"
+
 
     def full_name(self):
         last_name = " " + self.last_name if self.last_name != "" else ""
@@ -54,4 +58,18 @@ class User:
     def __hash__(self):
         return hash((self.first_name, self.last_name, self.chat_id))
 
+if __name__ == "__main__":
+    
+    my_user = User("Itai", None, "TuxoIC", 123231425)
 
+    users = {}
+    print("users before=", users)
+
+    print(my_user.chat_id in users)
+
+    users.update({my_user.chat_id: my_user.__dict__})
+    print(my_user.chat_id in users)
+    users.update({my_user.chat_id: my_user.__dict__})
+    users.update({my_user.chat_id: my_user.__dict__})
+    print(my_user.chat_id in users)
+    print(my_user.member_since)
