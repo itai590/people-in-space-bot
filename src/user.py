@@ -58,18 +58,3 @@ class User:
     def __hash__(self):
         return hash((self.first_name, self.last_name, self.chat_id))
 
-if __name__ == "__main__":
-    
-    my_user = User("Itai", None, "TuxoIC", 123231425)
-
-    users = {}
-    print("users before=", users)
-
-    print(my_user.chat_id in users)
-
-    users.update({my_user.chat_id: my_user.__dict__})
-    print(my_user.chat_id in users)
-    users.update({my_user.chat_id: my_user.__dict__})
-    users.update({my_user.chat_id: my_user.__dict__})
-    print(my_user.chat_id in users)
-    print(my_user.member_since)

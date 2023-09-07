@@ -17,7 +17,7 @@ class BotDefinitions:
     SUBSCRIPTION_LOG_FILENAME = "./logs/subscription_log.log"
 
 
-class SubscriptionHandlerBot():
+class SubscriptionHandlerBot:
 
     async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         user = update.message.from_user
@@ -97,5 +97,4 @@ class SubscriptionHandlerBot():
 
 if __name__ == "__main__":
     # python3 -m src.subscription_handler
-    # TODO Bot Father Add test Bot
     SubscriptionHandlerBot.main()
