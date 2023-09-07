@@ -35,6 +35,7 @@ class Utilities():
     def _get_users(filename, json=False):
         ans = ""
         dict = Utilities.read_json(filename)
+        print ("dict= ", dict)
         if json:
             return dict
         for key in dict:
