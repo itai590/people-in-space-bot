@@ -32,10 +32,10 @@ def scrape(number_only=False):
     start_time = time.time()
 
     driver.get(URL)
-    time.sleep(2)
+   # time.sleep(2)
 
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(5)
+  #  time.sleep(5)
     
     end_time = time.time()
     fetch_time = end_time - start_time
