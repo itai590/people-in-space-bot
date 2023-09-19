@@ -32,13 +32,7 @@ def scrape(number_only=False):
     chrome_options.add_argument("enable-automation")
     chrome_options.add_argument("--dns-prefetch-disable")
     chrome_options.add_argument("--disable-gpu")
-
-    # Capabilities
-    caps = DesiredCapabilities().CHROME
-    caps["pageLoadStrategy"] = "normal"  # complete
-    # caps["pageLoadStrategy"] = "eager"  #  interactive
-    # caps["pageLoadStrategy"] = "none"
-    driver = webdriver.Chrome(desired_capabilities=caps, options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
 
     # Start timer
     start_time = time.time()
