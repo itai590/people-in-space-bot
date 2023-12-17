@@ -5,6 +5,10 @@ REPOSITORY = 'peopleinspace'
 ENV = 'prod'
 def IMAGE_TAG
 
+/* Scripted Pipeline allows for more code reuse and modularity, 
+while Declarative Pipeline is designed to be more self-contained and less reliant on external scripts and libraries */
+
+/* Declarative Pipeline */
 pipeline {
     agent any
     stages {
