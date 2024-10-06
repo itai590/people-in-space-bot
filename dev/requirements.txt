@@ -1,3 +1,4 @@
+# requirements on local dev machine python 3.9.6
 python-telegram-bot==21.6
 bs4==0.0.2
 requests==2.32.3
