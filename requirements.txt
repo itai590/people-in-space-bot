@@ -1,5 +1,6 @@
-python-telegram-bot==21.6
-bs4==0.0.2
-requests==2.32.3
-selenium==4.25.0
-lxml==5.3.0
+# requirements on server python 3.7.3
+python-telegram-bot==20.1
+bs4==0.0.1
+requests==2.32.2
+selenium==4.10.0
+lxml==4.9.3
