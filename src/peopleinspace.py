@@ -1,98 +1,69 @@
-import time
 
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from utilities import Utilities as util
+###### wrapperapiopennotify ######
+import json
+import requests
 
-URL = "https://www.howmanypeopleareinspacerightnow.com/"
-
-WINDOW_SIZE = "1920,1080"
-FLAGS_FILE = "./src/flags.json"
+SETTINGS_JSON = "settings.json"
+FLAGS_FILE = "flags.json"
+json_file_key = "jsonFile"
 
 
-def search(dict, searchFor):
-    searchFor = searchFor.lower()
-    for k in dict:
-        if searchFor in k.lower():
-            return dict.get(k)
-    return None
+def read_json(filename):
+    with open(filename, 'r') as f:
+        data = json.load(f)
+    return data
 
 
-def scrape(number_only=False):
-    flags = util.read_json(FLAGS_FILE)  # dictionary
+def search_flag(flags_dict, country_name):
+    country_name = country_name.lower()
+    for key in flags_dict:
+        if country_name in key.lower():
+            return flags_dict.get(key)
+    return ''
 
-    # Options
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("enable-automation")
-    chrome_options.add_argument("--dns-prefetch-disable")
-    chrome_options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=chrome_options)
 
-    # Start timer
-    start_time = time.time()
+if __name__ == "__main__":
+    settings = read_json(SETTINGS_JSON)  # dictionary
+    flags = read_json(FLAGS_FILE)  # dictionary
 
-    # Fetch
-    driver.get(URL)
-    # time.sleep(2)
+    # Fetch data from the API
+    response = requests.get('http://api.open-notify.org/astros.json')
+    data = response.json()
 
-    # Scroll to bottom
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    # time.sleep(5)
+    people_in_space = data['number']
+    astronauts = data['people']
 
-    # End timer
-    end_time = time.time()
-    fetch_time = end_time - start_time
-    fetch_time = "\n\n🕒 Fetch time: " + str(round(fetch_time, 3)) + " seconds"
+    output = ""
+    for idx, person in enumerate(astronauts, 1):
+        name = person['name']
+        craft = person['craft']
 
-    # Parse
-    html = BeautifulSoup(driver.page_source, 'lxml')
+        # Example mapping of craft to countries (you may need to adjust this)
+        craft_country_mapping = {
+            'ISS': 'International',
+            'Tiangong': 'China',
+            # Add more mappings if necessary
+        }
+        country_name = craft_country_mapping.get(craft, 'International')
+        flag = search_flag(flags, country_name)
 
-    # Close driver
-    driver.quit()
+        # Since the API doesn't provide 'days in space', we can omit it or fetch from another source
+        person_days = ''  # Placeholder or fetch from another source if available
 
-    # Find people in space count
-    people_in_space = html.h1.get_text()  # html.find('a', id="container").h1.get_text()
-
-    if number_only:
-        return people_in_space + fetch_time
-
-    # Find people in space details
-    persons = html.find('div', id='listing')
-
-    # Build output
-    i = 1
-    output = "🚀   🪐  🌍     " + str(people_in_space) + "   🧑‍🚀🧑‍🚀\n"
-    for person in persons:
-
-        # Skip first element
-        if i != 1:
+        if idx != 1:
             output += "\n"
 
-        person_name = person.h2.get_text()
-        person_craft = person.h3.get_text()
-        person_days = person.h4.get_text()
-        person_flag = person.find('img').get('alt')
-        person_flag = person_flag.replace("Flag of ", "")
-        person_flag = search(flags, person_flag)
+        output += f"{idx}.{name}{flag} - {craft} - {person_days}"
 
-        output += str(i) + "." + person_name + person_flag + " - " + person_craft + " - " + person_days
-        i += 1
-
-    # Replace long titles
+    # Replace titles as in your original code
     output = output.replace("Engineer", "Eng.")
     output = output.replace("Commander", "Cmdr.")
     output = output.replace("Colonel", "Col.")
     output = output.replace("Lieutenant", "Lt.")
     output = output.replace("Flight", "FLT")
-    output += fetch_time
-    return output
 
-
-if __name__ == "__main__":
-    print(scrape())
+    # Write to the output file specified in settings
+    output_file = settings.get(json_file_key, 'output.txt')
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        outfile.write(f"🚀   🪐  🌍     {people_in_space}   🧑‍🚀🧑‍🚀\n")
+        outfile.write(output)
