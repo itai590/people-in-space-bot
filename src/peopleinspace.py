@@ -1,6 +1,6 @@
-
 ###### wrapperapiopennotify ######
 import json
+
 import requests
 
 SETTINGS_JSON = "settings.json"
@@ -22,8 +22,7 @@ def search_flag(flags_dict, country_name):
     return ''
 
 
-if __name__ == "__main__":
-    settings = read_json(SETTINGS_JSON)  # dictionary
+def scrape(number_only=False):
     flags = read_json(FLAGS_FILE)  # dictionary
 
     # Fetch data from the API
@@ -33,7 +32,7 @@ if __name__ == "__main__":
     people_in_space = data['number']
     astronauts = data['people']
 
-    output = ""
+    output = "🚀   🪐  🌍     " + str(people_in_space) + "   🧑‍🚀🧑‍🚀\n"
     for idx, person in enumerate(astronauts, 1):
         name = person['name']
         craft = person['craft']
@@ -61,9 +60,18 @@ if __name__ == "__main__":
     output = output.replace("Colonel", "Col.")
     output = output.replace("Lieutenant", "Lt.")
     output = output.replace("Flight", "FLT")
+    return output
+
+
+def write_output_to_file(output, people_in_space):
+    settings = read_json(SETTINGS_JSON)
 
     # Write to the output file specified in settings
     output_file = settings.get(json_file_key, 'output.txt')
     with open(output_file, 'w', encoding='utf-8') as outfile:
         outfile.write(f"🚀   🪐  🌍     {people_in_space}   🧑‍🚀🧑‍🚀\n")
         outfile.write(output)
+
+
+if __name__ == '__main__':
+    print(scrape())
