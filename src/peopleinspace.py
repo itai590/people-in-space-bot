@@ -4,7 +4,7 @@ import json
 import requests
 
 SETTINGS_JSON = "settings.json"
-FLAGS_FILE = "flags.json"
+FLAGS_FILE = "src/flags.json"
 json_file_key = "jsonFile"
 
 
